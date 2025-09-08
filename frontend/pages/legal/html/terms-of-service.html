@@ -35,34 +35,36 @@
             <div class="nav-brand">
                 <h1><a href="../../../index.html">幻境</a></h1>
             </div>
-            <ul class="nav-menu">
-                <li><a href="../../../index.html">首页</a></li>
-                <li><a href="../../../index.html#features">服务器特色</a></li>
-                <li><a href="../news/news.html">新闻资讯</a></li>
-                <li><a href="../../../index.html#connect">连接服务器</a></li>
-                <li><a href="../../../index.html#about">关于我们</a></li>
-                <li><a href="../download/download.html">下载中心</a></li>
-                <li><a href="../auth/auth.html" class="login-link">登录</a></li>
-            </ul>
-            <div class="menu-toggle">
+            <!-- 汉堡菜单图标 -->
+            <div class="hamburger-menu" id="hamburgerMenu">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
-        </div>
-
-        <!-- 移动端菜单 -->
-        <div class="mobile-menu">
-            <ul>
-                <li><a href="../../../index.html">首页</a></li>
-                <li><a href="../../../index.html#features">服务器特色</a></li>
-                <li><a href="../news/news.html">新闻资讯</a></li>
-                <li><a href="../../../index.html#connect">连接服务器</a></li>
-                <li><a href="../../../index.html#about">关于我们</a></li>
-                <li><a href="../download/download.html">下载中心</a></li>
-                <li><a href="../auth/auth.html" class="login-link">登录</a></li>
-            </ul>
-        </div>
+            
+            <!-- 背景遮罩层 -->
+            <div class="nav-menu-backdrop" id="navMenuBackdrop"></div>
+            
+            <!-- 导航菜单 -->
+            <div class="nav-menu-overlay" id="navMenuOverlay">
+                <div class="nav-menu-content">
+                    <div class="nav-menu-header">
+                        <h2>幻境</h2>
+                        <button class="close-menu" id="closeMenu">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <ul class="nav-menu">
+                        <li><a href="../../../index.html">首页</a></li>
+                        <li><a href="../../../index.html#features">服务器特色</a></li>
+                        <li><a href="../news/news.html">新闻资讯</a></li>
+                        <li><a href="../../../index.html#connect">连接服务器</a></li>
+                        <li><a href="../../../index.html#about">关于我们</a></li>
+                        <li><a href="../download/download.html">下载中心</a></li>
+                        <li><a href="../user/profile-settings.html" id="userManagementLink">用户管理</a></li>
+                    </ul>
+                </div>
+            </div>
     </nav>
 
     <!-- 页面标题 -->
@@ -88,17 +90,16 @@
                     <h3><i class="fas fa-list"></i> 目录</h3>
                     <nav class="toc-nav">
                         <a href="#acceptance" class="toc-link">1. 接受条款</a>
-                        <a href="#service-description" class="toc-link">2. 服务描述</a>
+                        <a href="#service-description" class="toc-link">2. 服务说明</a>
                         <a href="#user-accounts" class="toc-link">3. 用户账户</a>
-                        <a href="#acceptable-use" class="toc-link">4. 可接受使用</a>
-                        <a href="#prohibited-activities" class="toc-link">5. 禁止活动</a>
+                        <a href="#acceptable-use" class="toc-link">4. 用户行为规范</a>
+                        <a href="#prohibited-activities" class="toc-link">5. 付费服务与虚拟商品</a>
                         <a href="#game-rules" class="toc-link">6. 游戏规则</a>
                         <a href="#intellectual-property" class="toc-link">7. 知识产权</a>
                         <a href="#disclaimers" class="toc-link">8. 免责声明</a>
-                        <a href="#limitation-liability" class="toc-link">9. 责任限制</a>
-                        <a href="#termination" class="toc-link">10. 服务终止</a>
-                        <a href="#governing-law" class="toc-link">11. 适用法律</a>
-                        <a href="#contact" class="toc-link">12. 联系我们</a>
+                        <a href="#termination" class="toc-link">9. 服务的变更与终止</a>
+                        <a href="#governing-law" class="toc-link">10. 法律适用与争议解决</a>
+                        <a href="#contact" class="toc-link">11. 联系我们</a>
                     </nav>
                 </aside>
 
@@ -106,134 +107,84 @@
                 <article class="legal-text" data-aos="fade-left" data-aos-duration="800" data-aos-delay="400">
                     <section id="acceptance" class="legal-section">
                         <h2><i class="fas fa-handshake"></i> 1. 接受条款</h2>
-                        <p>欢迎使用幻境FiveM服务器（以下简称"本服务"）。通过访问或使用我们的服务，您同意受本服务条款的约束。如果您不同意这些条款，请不要使用我们的服务。</p>
+                        <p>使用幻境FiveM服务器（以下简称"服务"）即表示您同意接受本服务条款（以下简称"条款"）的约束。如果您不同意本条款，请不要使用服务。</p>
                         <div class="acceptance-notice">
                             <i class="fas fa-exclamation-triangle"></i>
-                            <p><strong>重要提示：</strong>请仔细阅读本服务条款。使用我们的服务即表示您已阅读、理解并同意受这些条款的约束。</p>
+                            <p><strong>重要提示：</strong>国际用户使用服务即表示同意受中国法律管辖。</p>
                         </div>
                     </section>
 
                     <section id="service-description" class="legal-section">
-                        <h2><i class="fas fa-server"></i> 2. 服务描述</h2>
-                        <p>幻境FiveM服务器提供以下服务：</p>
-                        <div class="service-features">
-                            <div class="service-item">
-                                <i class="fas fa-gamepad"></i>
-                                <h4>FiveM游戏服务器</h4>
-                                <p>提供稳定的FiveM角色扮演游戏环境</p>
-                            </div>
-                            <div class="service-item">
-                                <i class="fas fa-users"></i>
-                                <h4>社区平台</h4>
-                                <p>为玩家提供交流和互动的平台</p>
-                            </div>
-                            <div class="service-item">
-                                <i class="fas fa-download"></i>
-                                <h4>客户端下载</h4>
-                                <p>提供FiveM客户端和相关软件下载</p>
-                            </div>
-                            <div class="service-item">
-                                <i class="fas fa-headset"></i>
-                                <h4>技术支持</h4>
-                                <p>为玩家提供技术支持和帮助</p>
-                            </div>
+                        <h2><i class="fas fa-server"></i> 2. 服务说明</h2>
+                        <p>我们提供基于FiveM平台的游戏服务器服务，包括但不限于游戏环境、虚拟商品和付费服务。我们保留随时修改、暂停或终止服务的权利。</p>
+                        <div class="service-notice">
+                            <i class="fas fa-bell"></i>
+                            <p><strong>重要提示：</strong>重大变更将提前7天通过网站公告通知。</p>
                         </div>
                     </section>
 
                     <section id="user-accounts" class="legal-section">
                         <h2><i class="fas fa-user-circle"></i> 3. 用户账户</h2>
-                        <h3>3.1 账户注册</h3>
-                        <p>要使用我们的服务，您需要创建一个账户。注册时，您同意：</p>
+                        
+                        <h3>3.1 注册与使用</h3>
                         <ul class="account-requirements">
-                            <li><i class="fas fa-check"></i> 提供真实、准确、完整的信息</li>
-                            <li><i class="fas fa-check"></i> 及时更新您的账户信息</li>
-                            <li><i class="fas fa-check"></i> 保护您的账户安全</li>
-                            <li><i class="fas fa-check"></i> 对您账户下的所有活动负责</li>
+                            <li><i class="fas fa-check"></i> 您需提供准确的个人信息完成注册</li>
+                            <li><i class="fas fa-check"></i> 账户仅限您个人使用，不得转让或共享</li>
+                            <li><i class="fas fa-check"></i> 您应对账户的安全负责</li>
+                            <li><i class="fas fa-check"></i> 如发现账户被盗用，应立即通知我们</li>
                         </ul>
                         
-                        <h3>3.2 账户安全</h3>
-                        <div class="security-requirements">
-                            <div class="security-rule">
-                                <i class="fas fa-lock"></i>
-                                <h4>密码要求</h4>
-                                <p>密码必须至少8位，包含字母和数字</p>
-                            </div>
-                            <div class="security-rule">
-                                <i class="fas fa-shield-alt"></i>
-                                <h4>账户保护</h4>
-                                <p>不得与他人共享您的账户信息</p>
-                            </div>
-                            <div class="security-rule">
-                                <i class="fas fa-bell"></i>
-                                <h4>安全通知</h4>
-                                <p>发现异常活动请立即联系我们</p>
-                            </div>
-                        </div>
+                        <h3>3.2 账户注销</h3>
+                        <p>您可以随时申请注销账户，注销后您将无法访问服务，相关数据将按照隐私政策的规定处理。</p>
                     </section>
 
                     <section id="acceptable-use" class="legal-section">
-                        <h2><i class="fas fa-thumbs-up"></i> 4. 可接受使用</h2>
-                        <p>您同意以合法、适当的方式使用我们的服务。可接受的使用包括：</p>
-                        <div class="acceptable-uses">
-                            <div class="use-category">
-                                <h4><i class="fas fa-gamepad"></i> 游戏活动</h4>
+                        <h2><i class="fas fa-thumbs-up"></i> 4. 用户行为规范</h2>
+                        <p>您同意在使用服务时不从事以下行为：</p>
+                        <div class="prohibited-list">
+                            <div class="prohibited-category">
+                                <h4><i class="fas fa-exclamation-triangle"></i> 违规行为</h4>
                                 <ul>
-                                    <li>参与角色扮演游戏</li>
-                                    <li>与其他玩家互动</li>
-                                    <li>遵守游戏规则</li>
-                                </ul>
-                            </div>
-                            <div class="use-category">
-                                <h4><i class="fas fa-comments"></i> 社区参与</h4>
-                                <ul>
-                                    <li>建设性的讨论</li>
-                                    <li>帮助新玩家</li>
-                                    <li>分享游戏经验</li>
-                                </ul>
-                            </div>
-                            <div class="use-category">
-                                <h4><i class="fas fa-bug"></i> 问题报告</h4>
-                                <ul>
-                                    <li>报告游戏漏洞</li>
-                                    <li>提供改进建议</li>
-                                    <li>协助问题解决</li>
+                                    <li>使用作弊软件、漏洞或其他不公平手段影响游戏公平性</li>
+                                    <li>骚扰、威胁、侮辱其他用户或工作人员</li>
+                                    <li>上传、传播违法、侵权或有害内容</li>
+                                    <li><strong>禁止上传、分享任何用户生成内容（包括但不限于mods、插件、地图、截图、视频等）</strong></li>
+                                    <li>未经授权访问或试图破坏服务的技术系统</li>
+                                    <li>其他违反法律法规或损害服务和其他用户利益的行为</li>
                                 </ul>
                             </div>
                         </div>
                     </section>
 
                     <section id="prohibited-activities" class="legal-section">
-                        <h2><i class="fas fa-ban"></i> 5. 禁止活动</h2>
-                        <p>在使用我们的服务时，您不得：</p>
-                        <div class="prohibited-list">
-                            <div class="prohibited-category">
-                                <h4><i class="fas fa-exclamation-triangle"></i> 违规行为</h4>
-                                <ul>
-                                    <li>使用外挂、作弊软件或修改游戏文件</li>
-                                    <li>恶意破坏游戏环境或其他玩家体验</li>
-                                    <li>发布虚假信息或误导性内容</li>
-                                    <li>进行任何形式的欺诈活动</li>
-                                </ul>
+                        <h2><i class="fas fa-shopping-cart"></i> 5. 付费服务与虚拟商品</h2>
+                        
+                        <h3>5.1 购买与支付</h3>
+                        <ul class="payment-requirements">
+                            <li><i class="fas fa-check"></i> 您可以通过指定的支付方式购买虚拟商品或付费服务</li>
+                            <li><i class="fas fa-check"></i> <strong>价格以服务内显示为准，我们将提前7天通知价格变更</strong></li>
+                            <li><i class="fas fa-check"></i> 支付完成后，虚拟商品将发放至您的账户，不支持兑换为法定货币</li>
+                            <li><i class="fas fa-check"></i> <strong>购买流程：选择商品→确认订单→完成支付→系统自动发放</strong>，如遇发放失败可联系客服处理</li>
+                        </ul>
+                        
+                        <h3>5.2 退款政策</h3>
+                        <div class="refund-policy">
+                            <div class="refund-item">
+                                <h4><i class="fas fa-times-circle"></i> 一般情况</h4>
+                                <p>虚拟商品一旦购买，除法律规定或服务存在重大缺陷外，不予退款。</p>
                             </div>
-                            <div class="prohibited-category">
-                                <h4><i class="fas fa-comment-slash"></i> 不当言论</h4>
-                                <ul>
-                                    <li>发布仇恨言论、歧视性内容</li>
-                                    <li>使用不当语言或骚扰其他玩家</li>
-                                    <li>发布色情、暴力或其他不当内容</li>
-                                    <li>进行政治或宗教宣传</li>
-                                </ul>
+                            <div class="refund-item">
+                                <h4><i class="fas fa-exclamation-triangle"></i> 重大缺陷</h4>
+                                <p><strong>重大缺陷指导致服务完全无法使用的技术故障，且在48小时内未能修复</strong>。</p>
                             </div>
-                            <div class="prohibited-category">
-                                <h4><i class="fas fa-hacker"></i> 技术滥用</h4>
-                                <ul>
-                                    <li>尝试破解或攻击服务器</li>
-                                    <li>传播恶意软件或病毒</li>
-                                    <li>进行DDoS攻击或其他网络攻击</li>
-                                    <li>未经授权访问他人账户</li>
-                                </ul>
+                            <div class="refund-item">
+                                <h4><i class="fas fa-compensation"></i> 服务终止</h4>
+                                <p>如因服务终止导致您无法使用已购买的虚拟商品，我们将根据剩余使用期限提供合理补偿。</p>
                             </div>
                         </div>
+                        
+                        <h3>5.3 使用规则</h3>
+                        <p>虚拟商品的所有权归服务提供方，您仅获得使用权，<strong>使用期限以购买时显示为准</strong>，不得转售、交易或用于其他非法目的。</p>
                     </section>
 
                     <section id="game-rules" class="legal-section">
@@ -380,28 +331,21 @@
                     </section>
 
                     <section id="contact" class="legal-section">
-                        <h2><i class="fas fa-envelope"></i> 12. 联系我们</h2>
-                        <p>如果您对本服务条款有任何疑问，请通过以下方式联系我们：</p>
+                        <h2><i class="fas fa-envelope"></i> 10. 联系我们</h2>
+                        <p>如对本条款有任何疑问，请联系：</p>
                         <div class="contact-info">
                             <div class="contact-item">
                                 <i class="fas fa-envelope"></i>
                                 <div>
                                     <h4>邮箱联系</h4>
-                                    <p>legal@huanjing-fivem.com</p>
+                                    <p>760156834@qq.com</p>
                                 </div>
                             </div>
                             <div class="contact-item">
-                                <i class="fas fa-comments"></i>
+                                <i class="fas fa-calendar"></i>
                                 <div>
-                                    <h4>QQ群</h4>
-                                    <p>962507707</p>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-clock"></i>
-                                <div>
-                                    <h4>响应时间</h4>
-                                    <p>我们将在48小时内回复您的询问</p>
+                                    <h4>最后更新</h4>
+                                    <p>2025年09月08日</p>
                                 </div>
                             </div>
                         </div>

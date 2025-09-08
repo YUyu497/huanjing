@@ -670,17 +670,7 @@ body {
         padding: 0 1rem;
     }
 
-    .nav-menu {
-        display: none;
-    }
-
-    .menu-toggle {
-        display: flex;
-    }
-
-    .mobile-menu {
-        display: block;
-    }
+    /* 导航栏样式已移至 navigation.css */
 
     .hero-buttons {
         flex-direction: column;

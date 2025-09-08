@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../shared/ui/shared.css">
     <link rel="stylesheet" href="../../shared/ui/animations.css">
     <link rel="stylesheet" href="../../shared/ui/responsive.css">
+    <link rel="stylesheet" href="../../components/navigation/navigation.css">
     <link rel="stylesheet" href="profile-settings.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -23,8 +24,36 @@
                     <h1>幻境</h1>
                 </a>
             </div>
-            <div class="nav-menu">
-                <a href="../../index.html">返回首页</a>
+            
+            <!-- 汉堡菜单图标 -->
+            <div class="hamburger-menu" id="hamburgerMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <!-- 背景遮罩层 -->
+            <div class="nav-menu-backdrop" id="navMenuBackdrop"></div>
+            
+            <!-- 导航菜单 -->
+            <div class="nav-menu-overlay" id="navMenuOverlay">
+                <div class="nav-menu-content">
+                    <div class="nav-menu-header">
+                        <h2>幻境</h2>
+                        <button class="close-menu" id="closeMenu">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <ul class="nav-menu">
+                        <li><a href="../../index.html">首页</a></li>
+                        <li><a href="../../index.html#features">服务器特色</a></li>
+                        <li><a href="../news/news.html">新闻资讯</a></li>
+                        <li><a href="../../index.html#connect">连接服务器</a></li>
+                        <li><a href="../../index.html#about">关于我们</a></li>
+                        <li><a href="../download/download.html">下载中心</a></li>
+                        <li><a href="#" class="active" id="userManagementLink">用户管理</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>
@@ -371,8 +400,28 @@
         </div>
     </div>
 
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 幻境FiveM服务器. 保留所有权利.</p>
+                <div class="footer-links">
+                    <a href="../../index.html">返回首页</a>
+                    <a href="../../index.html#about">关于我们</a>
+                    <a href="../../index.html#connect">连接服务器</a>
+                </div>
+                <div class="footer-legal">
+                    <a href="../legal/html/privacy-policy.html" class="legal-link">隐私政策</a>
+                    <a href="../legal/html/terms-of-service.html" class="legal-link">服务条款</a>
+                    <a href="../legal/html/cookie-policy.html" class="legal-link">Cookie 政策</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <!-- JavaScript文件 -->
     <script src="../../shared/utils/user-permissions.js"></script>
+    <script src="../../components/navigation/navigation.js"></script>
     <script src="profile-settings.js"></script>
 </body>
 

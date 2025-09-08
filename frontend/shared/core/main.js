@@ -8,7 +8,9 @@ function initPage() {
     // 关键初始化（立即执行）
     initAOS();
     checkUserAuth();
-    initServerStatus();
+    if (typeof initServerStatus === 'function') {
+        initServerStatus();
+    }
     initNavigation();
     initServerInfo();
 
@@ -632,6 +634,11 @@ function updateUIForGuestUser() {
 // 更新界面为已登录状态
 function updateUIForLoggedInUser() {
     console.log('✅ 更新界面为已登录状态');
+    
+    // 更新用户管理链接状态
+    if (typeof window.updateUserManagementLink === 'function') {
+        window.updateUserManagementLink();
+    }
 
     // 恢复下载按钮
     const downloadButtons = document.querySelectorAll('.download-btn, .copy-btn, .connect-btn, .btn.btn-primary, .btn.btn-secondary');

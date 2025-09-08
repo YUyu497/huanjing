@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录记录 - 幻境服务器</title>
+    
+    <!-- 样式文件 -->
+    <link rel="stylesheet" href="../../shared/ui/shared.css">
+    <link rel="stylesheet" href="../../shared/ui/animations.css">
+    <link rel="stylesheet" href="../../shared/ui/responsive.css">
+    <link rel="stylesheet" href="../../components/navigation/navigation.css">
+    <link rel="stylesheet" href="profile-settings.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="profile-page">
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1><a href="../../index.html">幻境</a></h1>
+            </div>
+            
+            <!-- 汉堡菜单图标 -->
+            <div class="hamburger-menu" id="hamburgerMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <!-- 背景遮罩层 -->
+            <div class="nav-menu-backdrop" id="navMenuBackdrop"></div>
+            
+            <!-- 导航菜单 -->
+            <div class="nav-menu-overlay" id="navMenuOverlay">
+                <div class="nav-menu-content">
+                    <div class="nav-menu-header">
+                        <h2>幻境</h2>
+                        <button class="close-menu" id="closeMenu">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <ul class="nav-menu">
+                        <li><a href="../../index.html">首页</a></li>
+                        <li><a href="../../index.html#features">服务器特色</a></li>
+                        <li><a href="../news/news.html">新闻资讯</a></li>
+                        <li><a href="../../index.html#connect">连接服务器</a></li>
+                        <li><a href="../../index.html#about">关于我们</a></li>
+                        <li><a href="../download/download.html">下载中心</a></li>
+                        <li><a href="profile-settings.html" id="userManagementLink">用户管理</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="main-content">
+        <div class="container">
+            <!-- 页面标题 -->
+            <div class="page-header">
+                <h1><i class="fas fa-history"></i> 登录记录</h1>
+                <p>查看您的账户登录历史和活动记录</p>
+            </div>
+
+            <!-- 统计卡片 -->
+            <div class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-sign-in-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="totalLogins">--</div>
+                            <div class="stat-label">总登录次数</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="lastLogin">--</div>
+                            <div class="stat-label">最后登录</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="uniqueIPs">--</div>
+                            <div class="stat-label">不同IP地址</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="successRate">--</div>
+                            <div class="stat-label">成功率</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 筛选和搜索 -->
+            <div class="filter-section">
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <label for="dateRange">时间范围</label>
+                        <select id="dateRange">
+                            <option value="all">全部时间</option>
+                            <option value="today">今天</option>
+                            <option value="week">最近一周</option>
+                            <option value="month">最近一月</option>
+                            <option value="custom">自定义</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="statusFilter">登录状态</label>
+                        <select id="statusFilter">
+                            <option value="all">全部</option>
+                            <option value="success">成功</option>
+                            <option value="failed">失败</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="ipFilter">IP地址</label>
+                        <input type="text" id="ipFilter" placeholder="输入IP地址">
+                    </div>
+                    
+                    <div class="filter-actions">
+                        <button class="btn btn-primary" id="applyFilters">
+                            <i class="fas fa-filter"></i> 应用筛选
+                        </button>
+                        <button class="btn btn-secondary" id="resetFilters">
+                            <i class="fas fa-undo"></i> 重置
+                        </button>
+                        <button class="btn btn-success" id="exportData">
+                            <i class="fas fa-download"></i> 导出数据
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 登录记录表格 -->
+            <div class="table-section">
+                <div class="table-header">
+                    <h3><i class="fas fa-list"></i> 登录记录</h3>
+                    <div class="table-actions">
+                        <span class="record-count">共 <span id="totalRecords">0</span> 条记录</span>
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table class="data-table" id="loginHistoryTable">
+                        <thead>
+                            <tr>
+                                <th>时间</th>
+                                <th>IP地址</th>
+                                <th>设备信息</th>
+                                <th>登录方式</th>
+                                <th>结果</th>
+                                <th>失败原因</th>
+                            </tr>
+                        </thead>
+                        <tbody id="loginHistoryBody">
+                            <!-- 数据将通过JavaScript动态加载 -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- 分页控件 -->
+                <div class="pagination" id="pagination">
+                    <!-- 分页按钮将通过JavaScript动态生成 -->
+                </div>
+            </div>
+
+            <!-- 安全建议 -->
+            <div class="security-tips">
+                <div class="tips-header">
+                    <h3><i class="fas fa-lightbulb"></i> 安全建议</h3>
+                </div>
+                <div class="tips-content">
+                    <div class="tip-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>定期检查登录记录，发现异常活动及时修改密码</span>
+                    </div>
+                    <div class="tip-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>如发现来自未知地点的登录，请立即联系管理员</span>
+                    </div>
+                    <div class="tip-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>建议启用两步验证以提高账户安全性</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>幻境服务器</h4>
+                    <p>专业的FiveM角色扮演服务器</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="../../index.html">首页</a></li>
+                        <li><a href="../news/news.html">新闻资讯</a></li>
+                        <li><a href="../download/download.html">下载中心</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>法律文件</h4>
+                    <ul>
+                        <li><a href="../legal/html/privacy-policy.html">隐私政策</a></li>
+                        <li><a href="../legal/html/terms-of-service.html">服务条款</a></li>
+                        <li><a href="../legal/html/cookie-policy.html">Cookie政策</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 幻境服务器. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript文件 -->
+    <script src="../../shared/core/api-config.js"></script>
+    <script src="../../shared/auth/auth-manager.js"></script>
+    <script src="../../shared/auth/auth-validator.js"></script>
+    <script src="../../shared/utils/user-permissions.js"></script>
+    <script src="../../components/user-profile/user-profile.js"></script>
+
+    <!-- 导航组件 -->
+    <script src="../../components/navigation/navigation.js"></script>
+    
+    <script src="login-history.js"></script>
+</body>
+
+</html>

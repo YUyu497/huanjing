@@ -35,33 +35,37 @@
             <div class="nav-brand">
                 <h1><a href="../../../index.html">幻境</a></h1>
             </div>
-            <ul class="nav-menu">
-                <li><a href="../../../index.html">首页</a></li>
-                <li><a href="../../../index.html#features">服务器特色</a></li>
-                <li><a href="../news/news.html">新闻资讯</a></li>
-                <li><a href="../../../index.html#connect">连接服务器</a></li>
-                <li><a href="../../../index.html#about">关于我们</a></li>
-                <li><a href="../download/download.html">下载中心</a></li>
-                <li><a href="../auth/auth.html" class="login-link">登录</a></li>
-            </ul>
-            <div class="menu-toggle">
+            
+            <!-- 汉堡菜单图标 -->
+            <div class="hamburger-menu" id="hamburgerMenu">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
-        </div>
-
-        <!-- 移动端菜单 -->
-        <div class="mobile-menu">
-            <ul>
-                <li><a href="../../../index.html">首页</a></li>
-                <li><a href="../../../index.html#features">服务器特色</a></li>
-                <li><a href="../news/news.html">新闻资讯</a></li>
-                <li><a href="../../../index.html#connect">连接服务器</a></li>
-                <li><a href="../../../index.html#about">关于我们</a></li>
-                <li><a href="../download/download.html">下载中心</a></li>
-                <li><a href="../auth/auth.html" class="login-link">登录</a></li>
-            </ul>
+            
+            <!-- 背景遮罩层 -->
+            <div class="nav-menu-backdrop" id="navMenuBackdrop"></div>
+            
+            <!-- 导航菜单 -->
+            <div class="nav-menu-overlay" id="navMenuOverlay">
+                <div class="nav-menu-content">
+                    <div class="nav-menu-header">
+                        <h2>幻境</h2>
+                        <button class="close-menu" id="closeMenu">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <ul class="nav-menu">
+                        <li><a href="../../../index.html">首页</a></li>
+                        <li><a href="../../../index.html#features">服务器特色</a></li>
+                        <li><a href="../news/news.html">新闻资讯</a></li>
+                        <li><a href="../../../index.html#connect">连接服务器</a></li>
+                        <li><a href="../../../index.html#about">关于我们</a></li>
+                        <li><a href="../download/download.html">下载中心</a></li>
+                        <li><a href="../user/profile-settings.html" id="userManagementLink">用户管理</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -88,16 +92,14 @@
                     <h3><i class="fas fa-list"></i> 目录</h3>
                     <nav class="toc-nav">
                         <a href="#introduction" class="toc-link">1. 引言</a>
-                        <a href="#information-collection" class="toc-link">2. 信息收集</a>
-                        <a href="#information-use" class="toc-link">3. 信息使用</a>
-                        <a href="#information-sharing" class="toc-link">4. 信息共享</a>
-                        <a href="#data-security" class="toc-link">5. 数据安全</a>
+                        <a href="#information-collection" class="toc-link">2. 我们收集的信息</a>
+                        <a href="#information-use" class="toc-link">3. 信息的使用目的</a>
+                        <a href="#data-security" class="toc-link">4. 信息的存储与保护</a>
+                        <a href="#information-sharing" class="toc-link">5. 信息的共享与披露</a>
                         <a href="#user-rights" class="toc-link">6. 用户权利</a>
-                        <a href="#cookies" class="toc-link">7. Cookie使用</a>
-                        <a href="#third-party" class="toc-link">8. 第三方服务</a>
-                        <a href="#children" class="toc-link">9. 儿童隐私</a>
-                        <a href="#changes" class="toc-link">10. 政策变更</a>
-                        <a href="#contact" class="toc-link">11. 联系我们</a>
+                        <a href="#children" class="toc-link">7. 未成年人保护</a>
+                        <a href="#changes" class="toc-link">8. 政策更新</a>
+                        <a href="#contact" class="toc-link">9. 联系我们</a>
                     </nav>
                 </aside>
 
@@ -105,146 +107,193 @@
                 <article class="legal-text" data-aos="fade-left" data-aos-duration="800" data-aos-delay="400">
                     <section id="introduction" class="legal-section">
                         <h2><i class="fas fa-info-circle"></i> 1. 引言</h2>
-                        <p>欢迎使用幻境FiveM服务器（以下简称"我们"、"本服务"）。我们深知个人信息对您的重要性，并会尽全力保护您的个人信息安全可靠。我们承诺，我们将按法律法规要求，采取相应安全保护措施，尽力保护您的个人信息安全可控。</p>
-                        <p>本隐私政策将帮助您了解以下内容：</p>
-                        <ul>
-                            <li>我们如何收集和使用您的个人信息</li>
-                            <li>我们如何共享、转让、公开披露您的个人信息</li>
-                            <li>我们如何保护您的个人信息</li>
-                            <li>您的权利</li>
-                            <li>本政策如何更新</li>
-                        </ul>
+                        <p>欢迎使用幻境FiveM服务器（以下简称"服务"）。本隐私政策旨在帮助您了解我们如何收集、使用、存储和保护您的个人信息，以及您对这些信息的权利。使用我们的服务即表示您同意本政策的条款。</p>
+                        
+                        <h3>1.1 适用范围</h3>
+                        <p>本政策适用于所有使用我们服务的用户，包括中国境内用户及国际用户。对于中国境内用户，本政策同时符合《中华人民共和国网络安全法》、《中华人民共和国个人信息保护法》等相关法律法规要求。</p>
+                        
+                        <div class="acceptance-notice">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <p><strong>重要提示：</strong>国际用户使用服务即表示同意其个人信息传输至中国并受中国法律管辖。</p>
+                        </div>
                     </section>
 
                     <section id="information-collection" class="legal-section">
-                        <h2><i class="fas fa-database"></i> 2. 信息收集</h2>
-                        <h3>2.1 我们收集的信息类型</h3>
-                        <p>我们可能收集以下类型的信息：</p>
+                        <h2><i class="fas fa-database"></i> 2. 我们收集的信息</h2>
+                        
+                        <h3>2.1 个人身份信息</h3>
                         <div class="info-grid">
                             <div class="info-card">
-                                <h4><i class="fas fa-user"></i> 账户信息</h4>
+                                <h4><i class="fas fa-user"></i> 账户注册信息</h4>
                                 <ul>
+                                    <li>电子邮箱地址</li>
+                                    <li>手机号码</li>
                                     <li>用户名和密码</li>
-                                    <li>邮箱地址</li>
-                                    <li>注册时间</li>
                                 </ul>
                             </div>
                             <div class="info-card">
-                                <h4><i class="fas fa-gamepad"></i> 游戏数据</h4>
+                                <h4><i class="fas fa-credit-card"></i> 支付信息</h4>
                                 <ul>
-                                    <li>游戏内角色信息</li>
-                                    <li>游戏时长统计</li>
-                                    <li>服务器连接记录</li>
+                                    <li>订单号、交易金额</li>
+                                    <li>支付方式</li>
+                                    <li>脱敏后的支付记录</li>
                                 </ul>
+                                <p class="note">完整支付卡信息由合规第三方支付平台处理</p>
                             </div>
+                        </div>
+
+                        <h3>2.2 非个人身份信息</h3>
+                        <div class="info-grid">
                             <div class="info-card">
                                 <h4><i class="fas fa-desktop"></i> 技术信息</h4>
                                 <ul>
                                     <li>IP地址</li>
-                                    <li>设备信息</li>
-                                    <li>浏览器类型</li>
+                                    <li>设备类型、操作系统</li>
+                                    <li>浏览器版本</li>
+                                </ul>
+                            </div>
+                            <div class="info-card">
+                                <h4><i class="fas fa-gamepad"></i> 服务使用信息</h4>
+                                <ul>
+                                    <li>游戏内行为数据</li>
+                                    <li>游戏时长、角色信息</li>
+                                    <li>访问的服务功能</li>
+                                    <li>使用频率、互动内容</li>
                                 </ul>
                             </div>
                         </div>
                     </section>
 
                     <section id="information-use" class="legal-section">
-                        <h2><i class="fas fa-cogs"></i> 3. 信息使用</h2>
-                        <p>我们收集和使用您的个人信息用于以下目的：</p>
+                        <h2><i class="fas fa-cogs"></i> 3. 信息的使用目的</h2>
                         <div class="usage-list">
                             <div class="usage-item">
                                 <i class="fas fa-check-circle"></i>
                                 <div>
-                                    <h4>提供服务</h4>
-                                    <p>为您提供FiveM游戏服务器访问和游戏体验</p>
+                                    <h4>提供和维护服务</h4>
+                                    <p>确保服务正常运行，为您提供FiveM游戏服务器访问和游戏体验</p>
                                 </div>
                             </div>
                             <div class="usage-item">
                                 <i class="fas fa-check-circle"></i>
                                 <div>
-                                    <h4>账户管理</h4>
-                                    <p>创建和管理您的用户账户，验证身份</p>
+                                    <h4>处理订单和支付</h4>
+                                    <p>处理您的订单和支付请求，确保交易安全</p>
                                 </div>
                             </div>
                             <div class="usage-item">
                                 <i class="fas fa-check-circle"></i>
                                 <div>
-                                    <h4>安全保护</h4>
-                                    <p>检测和防止欺诈、滥用和其他安全威胁</p>
+                                    <h4>验证用户身份</h4>
+                                    <p>验证用户身份，防止欺诈行为，保护账户安全</p>
                                 </div>
                             </div>
                             <div class="usage-item">
                                 <i class="fas fa-check-circle"></i>
                                 <div>
-                                    <h4>服务改进</h4>
-                                    <p>分析使用情况以改进我们的服务</p>
+                                    <h4>改进服务质量</h4>
+                                    <p>分析使用情况以改进服务质量，开发新功能</p>
                                 </div>
+                            </div>
+                            <div class="usage-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <h4>遵守法律法规</h4>
+                                    <p>遵守法律法规要求，保护服务和用户的合法权益</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="data-security" class="legal-section">
+                        <h2><i class="fas fa-lock"></i> 4. 信息的存储与保护</h2>
+                        
+                        <h3>4.1 存储地点</h3>
+                        <div class="storage-notice">
+                            <i class="fas fa-server"></i>
+                            <p><strong>所有用户数据均存储在中国境内的服务器，不进行跨境传输</strong>，除非获得您的明确同意或法律要求。</p>
+                        </div>
+
+                        <h3>4.2 存储期限</h3>
+                        <div class="storage-details">
+                            <div class="storage-item">
+                                <h4><i class="fas fa-user-times"></i> 个人信息</h4>
+                                <p>您的个人信息将保留至您的账户注销后180天，除非法律要求更长的保留期限。</p>
+                            </div>
+                            <div class="storage-item">
+                                <h4><i class="fas fa-receipt"></i> 交易记录</h4>
+                                <p>交易记录将保留至法定诉讼时效届满。</p>
+                            </div>
+                        </div>
+
+                        <h3>4.3 安全措施</h3>
+                        <p>我们采取合理的技术和管理措施保护您的信息，包括但不限于：</p>
+                        <div class="security-features">
+                            <div class="security-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <h4>数据加密</h4>
+                                <p>传输和存储均采用AES-256加密算法</p>
+                            </div>
+                            <div class="security-item">
+                                <i class="fas fa-key"></i>
+                                <h4>访问控制</h4>
+                                <p>基于角色的权限管理</p>
+                            </div>
+                            <div class="security-item">
+                                <i class="fas fa-eye"></i>
+                                <h4>安全审计</h4>
+                                <p>每日日志审查</p>
                             </div>
                         </div>
                     </section>
 
                     <section id="information-sharing" class="legal-section">
-                        <h2><i class="fas fa-share-alt"></i> 4. 信息共享</h2>
-                        <p>我们不会出售、出租或以其他方式披露您的个人信息，除非：</p>
+                        <h2><i class="fas fa-share-alt"></i> 5. 信息的共享与披露</h2>
+                        <p>我们不会向任何第三方共享您的个人信息，除非：</p>
                         <ul class="sharing-list">
                             <li><strong>获得您的明确同意</strong> - 在获得您的明确同意后，我们会与其他方共享您的个人信息</li>
-                            <li><strong>法律要求</strong> - 根据法律法规、法律程序、政府要求或司法判决</li>
-                            <li><strong>服务提供商</strong> - 与可信赖的第三方服务提供商共享，以帮助我们运营服务</li>
-                            <li><strong>业务转让</strong> - 在合并、收购或资产出售的情况下</li>
+                            <li><strong>法律、法规或司法程序要求</strong> - 根据法律法规、法律程序、政府要求或司法判决</li>
+                            <li><strong>为保护服务、用户或公众的合法权益所必需</strong> - 在紧急情况下保护安全</li>
                         </ul>
-                    </section>
-
-                    <section id="data-security" class="legal-section">
-                        <h2><i class="fas fa-lock"></i> 5. 数据安全</h2>
-                        <p>我们采用行业标准的安全措施来保护您的个人信息：</p>
-                        <div class="security-features">
-                            <div class="security-item">
-                                <i class="fas fa-shield-alt"></i>
-                                <h4>加密传输</h4>
-                                <p>使用SSL/TLS加密保护数据传输</p>
-                            </div>
-                            <div class="security-item">
-                                <i class="fas fa-key"></i>
-                                <h4>密码保护</h4>
-                                <p>密码采用bcrypt加密存储</p>
-                            </div>
-                            <div class="security-item">
-                                <i class="fas fa-server"></i>
-                                <h4>安全服务器</h4>
-                                <p>定期更新和维护服务器安全</p>
-                            </div>
-                            <div class="security-item">
-                                <i class="fas fa-eye"></i>
-                                <h4>访问控制</h4>
-                                <p>限制员工对个人信息的访问</p>
-                            </div>
-                        </div>
                     </section>
 
                     <section id="user-rights" class="legal-section">
                         <h2><i class="fas fa-user-shield"></i> 6. 用户权利</h2>
-                        <p>根据相关法律法规，您享有以下权利：</p>
+                        <p>您有权：</p>
                         <div class="rights-grid">
                             <div class="right-item">
                                 <i class="fas fa-eye"></i>
-                                <h4>知情权</h4>
-                                <p>了解我们收集和使用您个人信息的情况</p>
+                                <h4>访问权</h4>
+                                <p>访问、更正或删除您的个人信息</p>
                             </div>
                             <div class="right-item">
-                                <i class="fas fa-edit"></i>
-                                <h4>更正权</h4>
-                                <p>要求我们更正不准确的个人信息</p>
+                                <i class="fas fa-undo"></i>
+                                <h4>撤回同意</h4>
+                                <p>撤回对信息收集和使用的同意</p>
                             </div>
                             <div class="right-item">
-                                <i class="fas fa-trash"></i>
-                                <h4>删除权</h4>
-                                <p>要求我们删除您的个人信息</p>
+                                <i class="fas fa-user-times"></i>
+                                <h4>账户注销</h4>
+                                <p>注销您的账户</p>
                             </div>
                             <div class="right-item">
-                                <i class="fas fa-download"></i>
-                                <h4>数据可携权</h4>
-                                <p>获取您的个人信息副本</p>
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <h4>投诉举报</h4>
+                                <p>投诉或举报隐私侵犯行为</p>
                             </div>
+                        </div>
+                        <div class="contact-notice">
+                            <i class="fas fa-envelope"></i>
+                            <p>如需行使上述权利，请通过 <strong>760156834@qq.com</strong> 与我们联系，我们将在15个工作日内回复处理结果。</p>
+                        </div>
+                    </section>
+
+                    <section id="children" class="legal-section">
+                        <h2><i class="fas fa-child"></i> 7. 未成年人保护</h2>
+                        <p>虽然我们的服务无年龄限制，但如果您是未成年人，应在监护人同意的情况下提供个人信息并使用服务。监护人有权查看和要求删除未成年人的个人信息。</p>
+                        <div class="children-notice">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <p>如果您是父母或监护人，发现您的孩子向我们提供了个人信息，请联系我们。</p>
                         </div>
                     </section>
 
@@ -296,41 +345,29 @@
                     </section>
 
                     <section id="changes" class="legal-section">
-                        <h2><i class="fas fa-sync-alt"></i> 10. 政策变更</h2>
-                        <p>我们可能会不时更新本隐私政策。当我们对政策进行重大更改时，我们会：</p>
-                        <ul class="change-process">
-                            <li><i class="fas fa-bell"></i> 在网站上发布新的隐私政策</li>
-                            <li><i class="fas fa-envelope"></i> 通过电子邮件通知您（如果适用）</li>
-                            <li><i class="fas fa-calendar"></i> 更新"最后更新"日期</li>
-                        </ul>
+                        <h2><i class="fas fa-sync-alt"></i> 8. 政策更新</h2>
+                        <p>我们可能会不时更新本政策。更新后，我们将通过网站公告或邮件通知您，<strong>重大变更将提前30天通知</strong>。建议您定期查阅本政策。</p>
                         <div class="change-notice">
                             <p><strong>重要提示：</strong>继续使用我们的服务即表示您接受更新后的隐私政策。</p>
                         </div>
                     </section>
 
                     <section id="contact" class="legal-section">
-                        <h2><i class="fas fa-envelope"></i> 11. 联系我们</h2>
-                        <p>如果您对本隐私政策有任何疑问或建议，请通过以下方式联系我们：</p>
+                        <h2><i class="fas fa-envelope"></i> 9. 联系我们</h2>
+                        <p>如对本政策有任何疑问，请联系：</p>
                         <div class="contact-info">
                             <div class="contact-item">
                                 <i class="fas fa-envelope"></i>
                                 <div>
                                     <h4>邮箱联系</h4>
-                                    <p>privacy@huanjing-fivem.com</p>
+                                    <p>760156834@qq.com</p>
                                 </div>
                             </div>
                             <div class="contact-item">
-                                <i class="fas fa-comments"></i>
+                                <i class="fas fa-calendar"></i>
                                 <div>
-                                    <h4>QQ群</h4>
-                                    <p>962507707</p>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-clock"></i>
-                                <div>
-                                    <h4>响应时间</h4>
-                                    <p>我们将在48小时内回复您的询问</p>
+                                    <h4>最后更新</h4>
+                                    <p>2025年09月08日</p>
                                 </div>
                             </div>
                         </div>

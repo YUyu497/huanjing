@@ -12,35 +12,56 @@ function handleNavbarScroll() {
     }
 }
 
-// 移动端菜单切换
-function toggleMobileMenu() {
-    const mobileMenu = document.querySelector('.mobile-menu');
-    const menuToggle = document.querySelector('.menu-toggle');
+// 汉堡菜单切换
+function toggleHamburgerMenu() {
+    const navMenuOverlay = document.querySelector('.nav-menu-overlay');
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
 
-    if (!mobileMenu || !menuToggle) return;
+    if (!navMenuOverlay || !hamburgerMenu) return;
 
-    const isActive = mobileMenu.classList.contains('active');
+    const isActive = navMenuOverlay.classList.contains('active');
 
     if (isActive) {
-        mobileMenu.classList.remove('active');
-        menuToggle.classList.remove('active');
+        closeHamburgerMenu();
     } else {
-        mobileMenu.classList.add('active');
-        menuToggle.classList.add('active');
+        openHamburgerMenu();
     }
 }
 
-// 关闭移动端菜单
-function closeMobileMenu() {
-    const mobileMenu = document.querySelector('.mobile-menu');
-    const menuToggle = document.querySelector('.menu-toggle');
+// 打开汉堡菜单
+function openHamburgerMenu() {
+    const navMenuOverlay = document.querySelector('.nav-menu-overlay');
+    const navMenuBackdrop = document.querySelector('.nav-menu-backdrop');
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
 
-    if (mobileMenu) {
-        mobileMenu.classList.remove('active');
+    if (navMenuOverlay) {
+        navMenuOverlay.classList.add('active');
     }
-    if (menuToggle) {
-        menuToggle.classList.remove('active');
+    if (navMenuBackdrop) {
+        navMenuBackdrop.classList.add('active');
     }
+    if (hamburgerMenu) {
+        hamburgerMenu.classList.add('active');
+    }
+    document.body.style.overflow = 'hidden'; // 防止背景滚动
+}
+
+// 关闭汉堡菜单
+function closeHamburgerMenu() {
+    const navMenuOverlay = document.querySelector('.nav-menu-overlay');
+    const navMenuBackdrop = document.querySelector('.nav-menu-backdrop');
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+
+    if (navMenuOverlay) {
+        navMenuOverlay.classList.remove('active');
+    }
+    if (navMenuBackdrop) {
+        navMenuBackdrop.classList.remove('active');
+    }
+    if (hamburgerMenu) {
+        hamburgerMenu.classList.remove('active');
+    }
+    document.body.style.overflow = ''; // 恢复背景滚动
 }
 
 // 平滑滚动到锚点
@@ -64,15 +85,15 @@ function smoothScrollToAnchor(anchor) {
             behavior: 'smooth'
         });
 
-        // 关闭移动端菜单
-        closeMobileMenu();
+        // 关闭汉堡菜单
+        closeHamburgerMenu();
     }
 }
 
 // 高亮当前导航项
 function highlightCurrentNavItem() {
     const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-menu a, .mobile-menu a');
+    const navLinks = document.querySelectorAll('.nav-menu a');
 
     if (sections.length === 0 || navLinks.length === 0) return;
 
@@ -90,7 +111,7 @@ function highlightCurrentNavItem() {
             });
 
             // 添加当前活动状态
-            const currentLink = document.querySelector(`.nav-menu a[href="#${sectionId}"], .mobile-menu a[href="#${sectionId}"]`);
+            const currentLink = document.querySelector(`.nav-menu a[href="#${sectionId}"]`);
             if (currentLink) {
                 currentLink.classList.add('active');
             }
@@ -98,16 +119,41 @@ function highlightCurrentNavItem() {
     });
 }
 
+// 用户管理导航项状态更新
+function updateUserManagementLink() {
+    const userManagementLink = document.getElementById('userManagementLink');
+    if (!userManagementLink) return;
+    
+    const userInfo = localStorage.getItem('userInfo');
+    const sessionToken = localStorage.getItem('sessionToken');
+    
+    if (userInfo && sessionToken) {
+        // 用户已登录，显示用户管理链接
+        userManagementLink.classList.add('show');
+        console.log('✅ 用户管理链接已显示');
+    } else {
+        // 用户未登录，隐藏用户管理链接
+        userManagementLink.classList.remove('show');
+        console.log('✅ 用户管理链接已隐藏');
+    }
+}
+
 // 初始化导航组件
 function initNavigation() {
-    // 绑定移动端菜单切换事件
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (menuToggle) {
-        menuToggle.addEventListener('click', toggleMobileMenu);
+    // 绑定汉堡菜单切换事件
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    if (hamburgerMenu) {
+        hamburgerMenu.addEventListener('click', toggleHamburgerMenu);
+    }
+
+    // 绑定关闭菜单按钮事件
+    const closeMenuBtn = document.querySelector('.close-menu');
+    if (closeMenuBtn) {
+        closeMenuBtn.addEventListener('click', closeHamburgerMenu);
     }
 
     // 绑定所有导航链接的点击事件
-    const navLinks = document.querySelectorAll('.nav-menu a, .mobile-menu a');
+    const navLinks = document.querySelectorAll('.nav-menu a');
     navLinks.forEach(link => {
         link.addEventListener('click', function (e) {
             e.preventDefault();
@@ -115,15 +161,11 @@ function initNavigation() {
         });
     });
 
-    // 点击页面其他地方关闭移动端菜单
-    document.addEventListener('click', function (e) {
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const menuToggle = document.querySelector('.menu-toggle');
-
-        if (mobileMenu && !mobileMenu.contains(e.target) && !menuToggle?.contains(e.target)) {
-            closeMobileMenu();
-        }
-    });
+    // 点击背景遮罩层关闭菜单
+    const navMenuBackdrop = document.querySelector('.nav-menu-backdrop');
+    if (navMenuBackdrop) {
+        navMenuBackdrop.addEventListener('click', closeHamburgerMenu);
+    }
 
     // 监听滚动事件
     window.addEventListener('scroll', function () {
@@ -131,19 +173,17 @@ function initNavigation() {
         highlightCurrentNavItem();
     });
 
-    // 监听窗口大小变化
-    window.addEventListener('resize', function () {
-        if (window.innerWidth > 768) {
-            closeMobileMenu();
-        }
-    });
-
     // 键盘导航支持
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') {
-            closeMobileMenu();
+            closeHamburgerMenu();
         }
     });
+
+    // 延迟初始化用户管理链接状态
+    setTimeout(() => {
+        updateUserManagementLink();
+    }, 100);
 }
 
 // 页面加载完成后初始化
@@ -155,6 +195,8 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // 导出函数供全局使用
-window.toggleMobileMenu = toggleMobileMenu;
-window.closeMobileMenu = closeMobileMenu;
+window.toggleHamburgerMenu = toggleHamburgerMenu;
+window.closeHamburgerMenu = closeHamburgerMenu;
+window.openHamburgerMenu = openHamburgerMenu;
 window.smoothScrollToAnchor = smoothScrollToAnchor;
+window.updateUserManagementLink = updateUserManagementLink;

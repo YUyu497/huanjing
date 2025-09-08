@@ -35,34 +35,36 @@
             <div class="nav-brand">
                 <h1><a href="../../../index.html">幻境</a></h1>
             </div>
-            <ul class="nav-menu">
-                <li><a href="../../../index.html">首页</a></li>
-                <li><a href="../../../index.html#features">服务器特色</a></li>
-                <li><a href="../news/news.html">新闻资讯</a></li>
-                <li><a href="../../../index.html#connect">连接服务器</a></li>
-                <li><a href="../../../index.html#about">关于我们</a></li>
-                <li><a href="../download/download.html">下载中心</a></li>
-                <li><a href="../auth/auth.html" class="login-link">登录</a></li>
-            </ul>
-            <div class="menu-toggle">
+            <!-- 汉堡菜单图标 -->
+            <div class="hamburger-menu" id="hamburgerMenu">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
-        </div>
-
-        <!-- 移动端菜单 -->
-        <div class="mobile-menu">
-            <ul>
-                <li><a href="../../../index.html">首页</a></li>
-                <li><a href="../../../index.html#features">服务器特色</a></li>
-                <li><a href="../news/news.html">新闻资讯</a></li>
-                <li><a href="../../../index.html#connect">连接服务器</a></li>
-                <li><a href="../../../index.html#about">关于我们</a></li>
-                <li><a href="../download/download.html">下载中心</a></li>
-                <li><a href="../auth/auth.html" class="login-link">登录</a></li>
-            </ul>
-        </div>
+            
+            <!-- 背景遮罩层 -->
+            <div class="nav-menu-backdrop" id="navMenuBackdrop"></div>
+            
+            <!-- 导航菜单 -->
+            <div class="nav-menu-overlay" id="navMenuOverlay">
+                <div class="nav-menu-content">
+                    <div class="nav-menu-header">
+                        <h2>幻境</h2>
+                        <button class="close-menu" id="closeMenu">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <ul class="nav-menu">
+                        <li><a href="../../../index.html">首页</a></li>
+                        <li><a href="../../../index.html#features">服务器特色</a></li>
+                        <li><a href="../news/news.html">新闻资讯</a></li>
+                        <li><a href="../../../index.html#connect">连接服务器</a></li>
+                        <li><a href="../../../index.html#about">关于我们</a></li>
+                        <li><a href="../download/download.html">下载中心</a></li>
+                        <li><a href="../user/profile-settings.html" id="userManagementLink">用户管理</a></li>
+                    </ul>
+                </div>
+            </div>
     </nav>
 
     <!-- 页面标题 -->
@@ -89,13 +91,10 @@
                     <nav class="toc-nav">
                         <a href="#what-are-cookies" class="toc-link">1. 什么是Cookie</a>
                         <a href="#how-we-use-cookies" class="toc-link">2. 我们如何使用Cookie</a>
-                        <a href="#types-of-cookies" class="toc-link">3. Cookie类型</a>
-                        <a href="#third-party-cookies" class="toc-link">4. 第三方Cookie</a>
-                        <a href="#cookie-management" class="toc-link">5. Cookie管理</a>
-                        <a href="#local-storage" class="toc-link">6. 本地存储</a>
-                        <a href="#analytics" class="toc-link">7. 分析工具</a>
-                        <a href="#updates" class="toc-link">8. 政策更新</a>
-                        <a href="#contact" class="toc-link">9. 联系我们</a>
+                        <a href="#cookie-management" class="toc-link">3. Cookie的管理</a>
+                        <a href="#updates" class="toc-link">4. 您的同意</a>
+                        <a href="#policy-updates" class="toc-link">5. 政策更新</a>
+                        <a href="#contact" class="toc-link">6. 联系我们</a>
                     </nav>
                 </aside>
 
@@ -136,28 +135,42 @@
 
                     <section id="how-we-use-cookies" class="legal-section">
                         <h2><i class="fas fa-cogs"></i> 2. 我们如何使用Cookie</h2>
-                        <p>我们使用Cookie来：</p>
                         
-                        <div class="usage-grid">
-                            <div class="usage-card">
-                                <i class="fas fa-user-check"></i>
-                                <h4>身份验证</h4>
-                                <p>保持您的登录状态，确保账户安全</p>
+                        <h3>2.1 当前使用的Cookie类型</h3>
+                        <div class="current-cookies">
+                            <div class="cookie-notice">
+                                <i class="fas fa-info-circle"></i>
+                                <p><strong>目前，我们的官网仅使用以下必要的Cookie，不使用任何分析工具或广告Cookie：</strong></p>
                             </div>
-                            <div class="usage-card">
-                                <i class="fas fa-cog"></i>
-                                <h4>偏好设置</h4>
-                                <p>记住您的语言、主题和其他设置</p>
+                            
+                            <div class="usage-grid">
+                                <div class="usage-card">
+                                    <i class="fas fa-user-check"></i>
+                                    <h4>认证Cookie</h4>
+                                    <p>用于验证您的登录状态，确保您能正常访问账户，有效期为会话期间</p>
+                                </div>
+                                <div class="usage-card">
+                                    <i class="fas fa-clock"></i>
+                                    <h4>会话Cookie</h4>
+                                    <p>用于维持您的浏览会话，在您关闭浏览器后自动删除</p>
+                                </div>
                             </div>
-                            <div class="usage-card">
-                                <i class="fas fa-shopping-cart"></i>
-                                <h4>功能服务</h4>
-                                <p>提供购物车、表单填写等功能</p>
-                            </div>
-                            <div class="usage-card">
-                                <i class="fas fa-chart-line"></i>
-                                <h4>分析统计</h4>
-                                <p>了解网站使用情况，改进用户体验</p>
+                        </div>
+
+                        <h3>2.2 未来可能使用的Cookie</h3>
+                        <p>我们可能在未来使用以下类型的Cookie，<strong>届时将通过更新本政策并弹窗通知您，获得您的明确同意后才会启用</strong>：</p>
+                        <div class="future-cookies">
+                            <div class="usage-grid">
+                                <div class="usage-card">
+                                    <i class="fas fa-chart-line"></i>
+                                    <h4>分析Cookie</h4>
+                                    <p>用于统计网站访问量、用户行为，帮助我们改进网站体验</p>
+                                </div>
+                                <div class="usage-card">
+                                    <i class="fas fa-cog"></i>
+                                    <h4>功能Cookie</h4>
+                                    <p>用于记住您的偏好设置（如语言、界面布局）</p>
+                                </div>
                             </div>
                         </div>
                     </section>
@@ -292,53 +305,30 @@
                     </section>
 
                     <section id="cookie-management" class="legal-section">
-                        <h2><i class="fas fa-sliders-h"></i> 5. Cookie管理</h2>
-                        <p>您可以控制和管理Cookie：</p>
+                        <h2><i class="fas fa-sliders-h"></i> 3. Cookie的管理</h2>
+                        <p>您可以通过浏览器设置管理或禁用Cookie：</p>
                         
-                        <div class="management-options">
-                            <div class="management-method">
-                                <h4><i class="fas fa-browser"></i> 浏览器设置</h4>
-                                <p>大多数浏览器允许您控制Cookie设置：</p>
-                                <div class="browser-instructions">
-                                    <div class="browser-item">
-                                        <i class="fab fa-chrome"></i>
-                                        <h5>Chrome</h5>
-                                        <p>设置 → 隐私设置和安全性 → Cookie</p>
-                                    </div>
-                                    <div class="browser-item">
-                                        <i class="fab fa-firefox"></i>
-                                        <h5>Firefox</h5>
-                                        <p>选项 → 隐私与安全 → Cookie</p>
-                                    </div>
-                                    <div class="browser-item">
-                                        <i class="fab fa-safari"></i>
-                                        <h5>Safari</h5>
-                                        <p>偏好设置 → 隐私 → Cookie</p>
-                                    </div>
-                                    <div class="browser-item">
-                                        <i class="fab fa-edge"></i>
-                                        <h5>Edge</h5>
-                                        <p>设置 → Cookie和网站权限</p>
-                                    </div>
-                                </div>
+                        <div class="browser-instructions">
+                            <div class="browser-item">
+                                <i class="fab fa-chrome"></i>
+                                <h5>Chrome</h5>
+                                <p>设置 > 隐私和安全 > Cookie和其他网站数据</p>
                             </div>
-
-                            <div class="management-method">
-                                <h4><i class="fas fa-cog"></i> Cookie偏好中心</h4>
-                                <p>我们提供Cookie偏好设置：</p>
-                                <div class="preference-center">
-                                    <button class="cookie-settings-btn" id="cookieSettingsBtn">
-                                        <i class="fas fa-cookie-bite"></i>
-                                        管理Cookie偏好
-                                    </button>
-                                    <p class="preference-note">您可以随时更改您的Cookie偏好设置</p>
-                                </div>
+                            <div class="browser-item">
+                                <i class="fab fa-firefox"></i>
+                                <h5>Firefox</h5>
+                                <p>选项 > 隐私与安全 > Cookie和网站数据</p>
+                            </div>
+                            <div class="browser-item">
+                                <i class="fab fa-edge"></i>
+                                <h5>Edge</h5>
+                                <p>设置 > 隐私、搜索和服务 > Cookie和网站权限</p>
                             </div>
                         </div>
 
                         <div class="cookie-warning">
                             <i class="fas fa-exclamation-triangle"></i>
-                            <p><strong>注意：</strong>禁用某些Cookie可能会影响网站的功能和您的用户体验。</p>
+                            <p><strong>注意：</strong>禁用Cookie可能导致部分服务功能无法正常使用。</p>
                         </div>
                     </section>
 
@@ -428,57 +418,35 @@
                     </section>
 
                     <section id="updates" class="legal-section">
-                        <h2><i class="fas fa-sync-alt"></i> 8. 政策更新</h2>
-                        <p>我们可能会不时更新本Cookie政策：</p>
-                        
-                        <div class="update-process">
-                            <div class="update-step">
-                                <div class="step-number">1</div>
-                                <h4>政策审查</h4>
-                                <p>定期审查和更新Cookie政策</p>
-                            </div>
-                            <div class="update-step">
-                                <div class="step-number">2</div>
-                                <h4>用户通知</h4>
-                                <p>通过网站横幅或邮件通知用户</p>
-                            </div>
-                            <div class="update-step">
-                                <div class="step-number">3</div>
-                                <h4>生效日期</h4>
-                                <p>更新后的政策立即生效</p>
-                            </div>
-                        </div>
-
-                        <div class="update-notice">
-                            <i class="fas fa-info-circle"></i>
-                            <p><strong>重要提示：</strong>继续使用我们的网站即表示您接受更新后的Cookie政策。</p>
+                        <h2><i class="fas fa-sync-alt"></i> 4. 您的同意</h2>
+                        <div class="consent-notice">
+                            <i class="fas fa-handshake"></i>
+                            <p><strong>使用我们的官网即表示您同意我们按照本政策使用必要的Cookie</strong>。对于未来可能添加的非必要Cookie（如分析Cookie），<strong>我们将通过网站弹窗或其他交互方式获取您的明确同意</strong>，您可以随时撤回同意。</p>
                         </div>
                     </section>
 
+                    <section id="policy-updates" class="legal-section">
+                        <h2><i class="fas fa-sync-alt"></i> 5. 政策更新</h2>
+                        <p>本政策可能会不时更新，建议您定期查阅。更新后的政策自发布之日起生效，<strong>重大变更将通过邮件通知</strong>。</p>
+                    </section>
+
                     <section id="contact" class="legal-section">
-                        <h2><i class="fas fa-envelope"></i> 9. 联系我们</h2>
-                        <p>如果您对本Cookie政策有任何疑问，请通过以下方式联系我们：</p>
+                        <h2><i class="fas fa-envelope"></i> 6. 联系我们</h2>
+                        <p>如对本政策有任何疑问，请联系：</p>
                         
                         <div class="contact-info">
                             <div class="contact-item">
                                 <i class="fas fa-envelope"></i>
                                 <div>
                                     <h4>邮箱联系</h4>
-                                    <p>cookies@huanjing-fivem.com</p>
+                                    <p>760156834@qq.com</p>
                                 </div>
                             </div>
                             <div class="contact-item">
-                                <i class="fas fa-comments"></i>
+                                <i class="fas fa-calendar"></i>
                                 <div>
-                                    <h4>QQ群</h4>
-                                    <p>962507707</p>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-clock"></i>
-                                <div>
-                                    <h4>响应时间</h4>
-                                    <p>我们将在48小时内回复您的询问</p>
+                                    <h4>最后更新</h4>
+                                    <p>2025年09月08日</p>
                                 </div>
                             </div>
                         </div>
