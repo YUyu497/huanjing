@@ -1,0 +1,312 @@
+/* 服务器通知组件样式 */
+
+.server-notifications {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+    pointer-events: none;
+}
+
+.server-notification {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 12px;
+    padding: 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transform: translateX(400px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.server-notification.show {
+    transform: translateX(0);
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.notification-icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    border-radius: 50%;
+}
+
+.notification-message {
+    flex: 1;
+    color: #374151;
+    font-weight: 500;
+    line-height: 1.4;
+    font-size: 14px;
+}
+
+.notification-close {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: #9CA3AF;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+.notification-close:hover {
+    background: rgba(0, 0, 0, 0.1);
+    color: #6B7280;
+}
+
+.notification-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: rgba(0, 0, 0, 0.1);
+    width: 100%;
+    z-index: 1;
+}
+
+/* 通知类型样式 */
+.notification-success {
+    border-left: 4px solid #10B981;
+}
+
+.notification-success .notification-icon {
+    color: #10B981;
+    background: rgba(16, 185, 129, 0.1);
+}
+
+.notification-success .notification-progress {
+    background: #10B981;
+}
+
+.notification-error {
+    border-left: 4px solid #EF4444;
+}
+
+.notification-error .notification-icon {
+    color: #EF4444;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.notification-error .notification-progress {
+    background: #EF4444;
+}
+
+.notification-warning {
+    border-left: 4px solid #F59E0B;
+}
+
+.notification-warning .notification-icon {
+    color: #F59E0B;
+    background: rgba(245, 158, 11, 0.1);
+}
+
+.notification-warning .notification-progress {
+    background: #F59E0B;
+}
+
+.notification-info {
+    border-left: 4px solid #3B82F6;
+}
+
+.notification-info .notification-icon {
+    color: #3B82F6;
+    background: rgba(59, 130, 246, 0.1);
+}
+
+.notification-info .notification-progress {
+    background: #3B82F6;
+}
+
+/* 悬停效果 */
+.server-notification:hover {
+    transform: translateX(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* 动画效果 */
+@keyframes notificationSlideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes notificationSlideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+}
+
+.server-notification.slide-in {
+    animation: notificationSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.server-notification.slide-out {
+    animation: notificationSlideOut 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .server-notifications {
+        top: 80px;
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
+
+    .server-notification {
+        transform: translateY(-100px);
+    }
+
+    .server-notification.show {
+        transform: translateY(0);
+    }
+
+    .server-notification:hover {
+        transform: translateY(-5px);
+    }
+
+    .notification-content {
+        padding: 14px 16px;
+    }
+
+    .notification-message {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .server-notifications {
+        top: 70px;
+        right: 5px;
+        left: 5px;
+    }
+
+    .notification-content {
+        padding: 12px 14px;
+        gap: 10px;
+    }
+
+    .notification-icon {
+        width: 20px;
+        height: 20px;
+        font-size: 14px;
+    }
+
+    .notification-message {
+        font-size: 12px;
+    }
+
+    .notification-close {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* 深色主题支持 */
+@media (prefers-color-scheme: dark) {
+    .server-notification {
+        background: rgba(31, 41, 55, 0.95);
+        border: 1px solid rgba(75, 85, 99, 0.3);
+    }
+
+    .notification-message {
+        color: #F9FAFB;
+    }
+
+    .notification-close {
+        color: #9CA3AF;
+    }
+
+    .notification-close:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #D1D5DB;
+    }
+}
+
+/* 高对比度模式支持 */
+@media (prefers-contrast: high) {
+    .server-notification {
+        border-width: 2px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .notification-progress {
+        height: 4px;
+    }
+}
+
+/* 减少动画模式支持 */
+@media (prefers-reduced-motion: reduce) {
+    .server-notification {
+        transition: none;
+    }
+
+    .server-notification.show {
+        transform: translateX(0);
+    }
+
+    .notification-progress {
+        transition: none;
+    }
+
+    @keyframes notificationSlideIn {
+        from {
+            transform: translateX(0);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes notificationSlideOut {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        to {
+            transform: translateX(0);
+            opacity: 0;
+        }
+    }
+}

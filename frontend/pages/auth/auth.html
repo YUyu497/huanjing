@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户登录 - 幻境FiveM服务器</title>
+
+    <!-- 样式文件 -->
+    <link rel="stylesheet" href="../../shared/ui/shared.css">
+    <link rel="stylesheet" href="../../shared/ui/animations.css">
+    <link rel="stylesheet" href="../../shared/ui/responsive.css">
+    <link rel="stylesheet" href="../../components/navigation/navigation.css">
+
+    <!-- 登录页面专用样式 -->
+    <link rel="stylesheet" href="auth.css">
+
+    <!-- 用户权限系统样式 -->
+    <link rel="stylesheet" href="../../components/user-profile/user-profile.css">
+
+    <!-- AOS动画库 -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- 字体和图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="auth-page">
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1><a href="../../index.html">幻境</a></h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../../index.html">首页</a></li>
+                <li><a href="../../index.html#features">服务器特色</a></li>
+                <li><a href="../news/news.html">新闻资讯</a></li>
+                <li><a href="../../index.html#connect">连接服务器</a></li>
+                <li><a href="../../index.html#about">关于我们</a></li>
+                <li><a href="../download/download.html">下载中心</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <!-- 移动端菜单 -->
+        <div class="mobile-menu">
+            <ul>
+                <li><a href="../../index.html">首页</a></li>
+                <li><a href="../../index.html#features">服务器特色</a></li>
+                <li><a href="../news/news.html">新闻资讯</a></li>
+                <li><a href="../../index.html#connect">连接服务器</a></li>
+                <li><a href="../../index.html#about">关于我们</a></li>
+                <li><a href="../download/download.html">下载中心</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 主要内容区域 -->
+    <main class="auth-main">
+        <div class="container">
+            <div class="auth-container">
+                <!-- 左侧信息区域 -->
+                <div class="auth-info" data-aos="fade-right" data-aos-duration="800">
+                    <div class="auth-info-content">
+                        <div class="brand-section">
+                            <div class="brand-logo">
+                                <span>幻</span>
+                            </div>
+                            <h1>幻境FiveM服务器</h1>
+                            <p>加入我们的角色扮演世界</p>
+                        </div>
+
+                        <div class="features-list">
+                            <div class="feature-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <div>
+                                    <h3>公平公正</h3>
+                                    <p>承诺绝不使用权限，所有玩家享受平等游戏体验</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-users"></i>
+                                <div>
+                                    <h3>活跃社区</h3>
+                                    <p>数千名玩家在线，丰富的社交和互动体验</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <h3>24小时运行</h3>
+                                    <p>服务器全天候稳定运行，随时欢迎加入</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右侧表单区域 -->
+                <div class="auth-form-container" data-aos="fade-left" data-aos-duration="800">
+                    <div class="auth-tabs">
+                        <button class="tab-btn active" data-tab="login">登录</button>
+                        <button class="tab-btn" data-tab="register">注册</button>
+                    </div>
+
+                    <!-- 登录表单 -->
+                    <form id="loginForm" class="auth-form active">
+                        <div class="form-header">
+                            <h2>欢迎回来</h2>
+                            <p>选择您喜欢的登录方式</p>
+                        </div>
+
+                        <!-- 登录方式选择 -->
+                        <div class="login-method-selector">
+                            <button type="button" class="method-btn active" data-method="password">
+                                <i class="fas fa-lock"></i>
+                                <span>密码登录</span>
+                            </button>
+                            <button type="button" class="method-btn" data-method="verification">
+                                <i class="fas fa-key"></i>
+                                <span>验证码登录</span>
+                            </button>
+                        </div>
+
+                        <!-- 密码登录 -->
+                        <div id="passwordLogin" class="login-method active">
+                            <div class="form-group">
+                                <label for="loginEmail">QQ邮箱或用户名</label>
+                                <div class="input-group">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="loginEmail" name="email" placeholder="请输入QQ邮箱或用户名"
+                                        autocomplete="email" required>
+                                </div>
+                                <div class="form-error" id="loginEmailError"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="loginPassword">密码</label>
+                                <div class="input-group">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" id="loginPassword" name="password" placeholder="请输入密码"
+                                        autocomplete="current-password" required>
+                                    <button type="button" class="toggle-password" data-target="loginPassword">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="form-error" id="loginPasswordError"></div>
+                            </div>
+                        </div>
+
+                        <!-- 验证码登录 -->
+                        <div id="verificationLogin" class="login-method">
+                            <div class="form-group">
+                                <label for="loginEmailCode">QQ邮箱</label>
+                                <div class="input-group">
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="email" id="loginEmailCode" name="emailCode" placeholder="请输入您的QQ邮箱"
+                                        autocomplete="email">
+                                </div>
+                                <div class="form-error" id="loginEmailCodeError"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="loginCode">邮箱验证码</label>
+                                <div class="input-group verification-group">
+                                    <i class="fas fa-key"></i>
+                                    <input type="text" id="loginCode" name="verificationCode" placeholder="请输入6位验证码"
+                                        maxlength="6">
+                                    <button type="button" class="send-code-btn" id="sendLoginCodeBtn">
+                                        <span>发送验证码</span>
+                                    </button>
+                                </div>
+                                <div class="form-error" id="loginCodeError"></div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="auth-submit-btn" id="loginSubmitBtn">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span>登录</span>
+                        </button>
+
+                        <div class="form-footer">
+                            <p>还没有账户？<a href="#" class="switch-tab" data-tab="register">立即注册</a></p>
+                            <p><a href="reset-password.html" class="forgot-password">忘记密码？</a></p>
+                        </div>
+                    </form>
+
+                    <!-- 注册表单 -->
+                    <form id="registerForm" class="auth-form">
+                        <div class="form-header">
+                            <h2>创建账户</h2>
+                            <p>使用QQ邮箱注册新账户</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="registerEmail">QQ邮箱</label>
+                            <div class="input-group">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="registerEmail" name="email" placeholder="请输入您的QQ邮箱"
+                                    autocomplete="email" required>
+                            </div>
+                            <div class="form-error" id="registerEmailError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="registerUsername">用户名</label>
+                            <div class="input-group">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="registerUsername" name="username" placeholder="3-20位字母数字下划线"
+                                    autocomplete="username" required>
+                            </div>
+                            <div class="form-error" id="registerUsernameError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="registerDisplayName">显示名称（可选）</label>
+                            <div class="input-group">
+                                <i class="fas fa-id-card"></i>
+                                <input type="text" id="registerDisplayName" name="displayName" placeholder="您在游戏中显示的名称"
+                                    autocomplete="nickname">
+                            </div>
+                            <div class="form-error" id="registerDisplayNameError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="registerPassword">密码</label>
+                            <div class="input-group">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="registerPassword" name="password"
+                                    placeholder="至少6位，包含大小写字母和数字" autocomplete="new-password" required>
+                                <button type="button" class="toggle-password" data-target="registerPassword">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="form-error" id="registerPasswordError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="registerConfirmPassword">确认密码</label>
+                            <div class="input-group">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="registerConfirmPassword" name="confirmPassword"
+                                    placeholder="请再次输入密码" autocomplete="new-password" required>
+                                <button type="button" class="toggle-password" data-target="registerConfirmPassword">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="form-error" id="registerConfirmPasswordError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="registerCode">邮箱验证码</label>
+                            <div class="input-group verification-group">
+                                <i class="fas fa-key"></i>
+                                <input type="text" id="registerCode" name="verificationCode" placeholder="请输入6位验证码"
+                                    maxlength="6" required>
+                                <button type="button" class="send-code-btn" id="sendRegisterCodeBtn">
+                                    <span>发送验证码</span>
+                                </button>
+                            </div>
+                            <div class="form-error" id="registerCodeError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="agreeTerms" required>
+                                <span class="checkmark"></span>
+                                我已阅读并同意<a href="#" target="_blank">用户协议</a>和<a href="#" target="_blank">隐私政策</a>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="auth-submit-btn" id="registerSubmitBtn">
+                            <i class="fas fa-user-plus"></i>
+                            <span>注册账户</span>
+                        </button>
+
+                        <div class="form-footer">
+                            <p>已有账户？<a href="#" class="switch-tab" data-tab="login">立即登录</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 通知组件 -->
+    <div id="notification" class="notification">
+        <div class="notification-content">
+            <i class="notification-icon"></i>
+            <span class="notification-message"></span>
+        </div>
+    </div>
+
+    <!-- AOS动画库脚本 -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- 用户权限系统 -->
+    <script src="../../shared/utils/user-permissions.js"></script>
+    <script src="../../components/user-profile/user-profile.js"></script>
+
+    <!-- JavaScript文件 -->
+    <script src="auth.js"></script>
+</body>
+
+</html>

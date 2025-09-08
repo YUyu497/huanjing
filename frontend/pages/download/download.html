@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下载中心 - 幻境FiveM服务器</title>
+
+    <!-- 样式文件 -->
+    <link rel="stylesheet" href="../../shared/ui/shared.css">
+    <link rel="stylesheet" href="../../shared/ui/animations.css">
+    <link rel="stylesheet" href="../../shared/ui/responsive.css">
+    <link rel="stylesheet" href="../../components/navigation/navigation.css">
+    <link rel="stylesheet" href="../../components/download/download.css">
+    <link rel="stylesheet" href="../../components/server-status/server-status.css">
+
+    <!-- 下载页面专用样式 - 必须放在最后确保优先级 -->
+    <link rel="stylesheet" href="download.css">
+
+    <!-- AOS动画库 -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+
+
+    <!-- 字体和图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    <script>
+        if (typeof Chart === 'undefined') {
+            console.log('🔄 主CDN加载失败，尝试备选CDN...');
+            const script = document.createElement('script');
+            script.src = 'https://unpkg.com/chart.js@4.4.0/dist/chart.umd.min.js';
+            script.onload = () => console.log('✅ 备选CDN加载成功');
+            script.onerror = () => console.log('❌ 备选CDN也加载失败');
+            document.head.appendChild(script);
+        }
+    </script>
+</head>
+
+<body class="download-page">
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1><a href="../../index.html">幻境</a></h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../../index.html">首页</a></li>
+                <li><a href="../../index.html#features">服务器特色</a></li>
+                <li><a href="../news/news.html">新闻资讯</a></li>
+                <li><a href="../../index.html#connect">连接服务器</a></li>
+                <li><a href="../../index.html#about">关于我们</a></li>
+                <li><a href="download.html" class="active">下载中心</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <!-- 移动端菜单 -->
+        <div class="mobile-menu">
+            <ul>
+                <li><a href="../../index.html">首页</a></li>
+                <li><a href="../../index.html#features">服务器特色</a></li>
+                <li><a href="../news/news.html">新闻资讯</a></li>
+                <li><a href="../../index.html#connect">连接服务器</a></li>
+                <li><a href="../../index.html#about">关于我们</a></li>
+                <li><a href="download.html" class="active">下载中心</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 页面头部 -->
+    <section class="page-header">
+        <div class="container">
+            <div class="header-content">
+                <h1 data-aos="fade-up" data-aos-duration="800">下载中心</h1>
+                <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">获取FiveM客户端，开始你的角色扮演之旅</p>
+                <div class="breadcrumb" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+                    <a href="../../index.html">首页</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>下载中心</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 下载选项 -->
+    <section class="download-section">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up" data-aos-duration="800">
+                <h2>获取<span class="highlight">游戏软件</span></h2>
+                <p>下载所需游戏软件，开始你的角色扮演之旅</p>
+            </div>
+
+            <div class="download-grid">
+                <div class="download-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <div class="download-icon">
+                        <i class="fab fa-windows"></i>
+                    </div>
+                    <h3>FiveM客户端</h3>
+                    <p>适用于Windows 10/11系统</p>
+                    <div class="download-info">
+                        <span><i class="fas fa-download"></i> 最新版本 v1.0.0</span>
+                        <span><i class="fas fa-clock"></i> 更新于 2024-01-15 14:30</span>
+                        <span><i class="fas fa-calendar-alt"></i> 发布时间 2024-01-15 10:00</span>
+                    </div>
+
+                    <!-- 服务器状态显示 -->
+                    <div class="server-status-display" id="server-status-display">
+                        <div class="status-item">
+                            <i class="fas fa-server"></i>
+                            <span class="status-text">服务器状态: <span class="status-value"
+                                    id="server-status-value">检查中...</span></span>
+                        </div>
+                        <div class="status-item">
+                            <i class="fas fa-users"></i>
+                            <span class="status-text">在线玩家: <span class="status-value"
+                                    id="player-count-value">检查中...</span></span>
+                        </div>
+                        <div class="status-item">
+                            <i class="fas fa-clock"></i>
+                            <span class="status-text">运行时间: <span class="status-value"
+                                    id="uptime-value">检查中...</span></span>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary download-btn" data-platform="windows" data-type="fivem">
+                        <i class="fas fa-download"></i>
+                        <span>下载FiveM客户端</span>
+                    </button>
+                </div>
+
+                <div class="download-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <div class="download-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Kook语音软件</h3>
+                    <p>适用于Windows 10/11系统</p>
+                    <div class="download-info">
+                        <span><i class="fas fa-download"></i> 最新版本 v1.0.0</span>
+                        <span><i class="fas fa-clock"></i> 更新于 2024-09-04 02:54</span>
+                        <span><i class="fas fa-calendar-alt"></i> 发布时间 2024-09-04 02:54</span>
+                    </div>
+
+                    <div class="kook-description">
+                        <p><i class="fas fa-info-circle"></i> Kook是一款优秀的语音聊天软件，支持高质量语音通话和文字聊天，是游戏团队协作的理想选择。</p>
+                    </div>
+
+                    <button class="btn btn-secondary download-btn" data-platform="windows" data-type="kook">
+                        <i class="fas fa-download"></i>
+                        <span>下载Kook软件</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 系统要求 -->
+    <section class="requirements-section">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up" data-aos-duration="800">
+                <h2>系统<span class="highlight">要求</span></h2>
+                <p>确保你的Windows系统满足运行FiveM的要求</p>
+            </div>
+
+            <div class="requirements-grid">
+                <div class="requirement-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <h3><i class="fas fa-desktop"></i> 最低配置</h3>
+                    <div class="requirement-list">
+                        <div class="requirement-item">
+                            <strong>操作系统：</strong>Windows 10 64位
+                        </div>
+                        <div class="requirement-item">
+                            <strong>处理器：</strong>Intel Core 2 Q6600 @ 2.40GHz
+                        </div>
+                        <div class="requirement-item">
+                            <strong>内存：</strong>4GB RAM
+                        </div>
+                        <div class="requirement-item">
+                            <strong>显卡：</strong>NVIDIA 9800 GT 1GB
+                        </div>
+                        <div class="requirement-item">
+                            <strong>存储：</strong>100GB可用空间
+                        </div>
+                    </div>
+                </div>
+
+                <div class="requirement-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <h3><i class="fas fa-rocket"></i> 推荐配置</h3>
+                    <div class="requirement-list">
+                        <div class="requirement-item">
+                            <strong>操作系统：</strong>Windows 11 64位
+                        </div>
+                        <div class="requirement-item">
+                            <strong>处理器：</strong>Intel Core i5 3470 @ 3.2GHz
+                        </div>
+                        <div class="requirement-item">
+                            <strong>内存：</strong>16GB RAM
+                        </div>
+                        <div class="requirement-item">
+                            <strong>显卡：</strong>NVIDIA GTX 660 2GB
+                        </div>
+                        <div class="requirement-item">
+                            <strong>存储：</strong>120GB SSD
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 下载统计 -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up" data-aos-duration="800">
+                <h2>下载<span class="highlight">统计</span></h2>
+                <p>了解FiveM客户端的下载情况和用户反馈</p>
+            </div>
+
+            <div class="stats-overview">
+                <div class="stat-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <div class="stat-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number total-downloads" id="total-downloads">0</div>
+                        <div class="stat-label">总下载量</div>
+                    </div>
+                </div>
+
+                <div class="stat-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-day"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number today-downloads" id="today-downloads">0</div>
+                        <div class="stat-label">今日下载</div>
+                    </div>
+                </div>
+
+                <div class="stat-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number active-users" id="active-users">0</div>
+                        <div class="stat-label">活跃用户</div>
+                    </div>
+                </div>
+
+                <div class="stat-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+                    <div class="stat-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number rating" id="rating">4.8</div>
+                        <div class="stat-label">用户评分</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 下载趋势图表 -->
+    <section class="trends-section">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up" data-aos-duration="800">
+                <h2>下载<span class="highlight">趋势</span></h2>
+                <p>查看下载量的变化趋势</p>
+            </div>
+
+            <div class="chart-wrapper" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                <div class="chart-container">
+                    <canvas id="downloadTrendChart"></canvas>
+                </div>
+                <div class="chart-controls">
+                    <button class="chart-btn active" data-period="7">7天</button>
+                    <button class="chart-btn" data-period="30">30天</button>
+                    <button class="chart-btn" data-period="90">90天</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up" data-aos-duration="800">
+                <h2>常见<span class="highlight">问题</span></h2>
+                <p>解答用户常见疑问</p>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-item" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <div class="faq-question">
+                        <h3>FiveM是什么？</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>FiveM是一个多玩家修改框架，允许玩家连接到自定义的GTA V服务器，体验独特的角色扮演内容。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <div class="faq-question">
+                        <h3>如何安装FiveM？</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>下载Windows安装包，运行安装程序，按照提示完成安装即可。安装完成后需要重启电脑。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                    <div class="faq-question">
+                        <h3>支持哪些操作系统？</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>目前主要支持Windows 10/11系统，确保系统为64位版本。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+                    <div class="faq-question">
+                        <h3>如何获取最新版本？</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>我们会在官网及时更新最新版本，当前版本为v1.0.0，发布时间为2024年1月15日。建议定期检查官网获取最新版本。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 幻境FiveM服务器. 保留所有权利.</p>
+                <div class="footer-links">
+                    <a href="../../index.html">返回首页</a>
+                    <a href="../../index.html#about">关于我们</a>
+                    <a href="../../index.html#connect">连接服务器</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS动画库脚本 -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- API配置文件 -->
+    <script src="../../shared/core/api-config.js"></script>
+
+    <!-- 认证管理器 -->
+    <script src="../../shared/auth/auth-manager.js"></script>
+
+    <!-- 认证验证器 -->
+    <script src="../../shared/auth/auth-validator.js"></script>
+
+    <!-- 服务器状态服务 -->
+    <script src="../../shared/core/server-status.js"></script>
+
+    <!-- JavaScript文件 -->
+    <script src="download.js"></script>
+</body>
+
+</html>

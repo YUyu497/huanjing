@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人设置 - 幻境FiveM服务器</title>
+
+    <!-- 样式文件 -->
+    <link rel="stylesheet" href="../../shared/ui/shared.css">
+    <link rel="stylesheet" href="../../shared/ui/animations.css">
+    <link rel="stylesheet" href="../../shared/ui/responsive.css">
+    <link rel="stylesheet" href="profile-settings.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="../../index.html">
+                    <h1>幻境</h1>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="../../index.html">返回首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="main-content">
+        <div class="container">
+            <!-- 页面标题 -->
+            <div class="page-header">
+                <h1><i class="fas fa-user-cog"></i> 个人设置</h1>
+                <p>管理您的账户信息、安全设置和偏好配置</p>
+            </div>
+
+            <!-- 设置标签页 -->
+            <div class="settings-container">
+                <div class="settings-tabs">
+                    <button class="tab-btn active" data-tab="profile">
+                        <i class="fas fa-user"></i>
+                        <span>基本资料</span>
+                    </button>
+                    <button class="tab-btn" data-tab="security">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>安全设置</span>
+                    </button>
+                    <button class="tab-btn" data-tab="preferences">
+                        <i class="fas fa-cog"></i>
+                        <span>偏好设置</span>
+                    </button>
+                    <button class="tab-btn" data-tab="history">
+                        <i class="fas fa-history"></i>
+                        <span>登录记录</span>
+                    </button>
+                </div>
+
+                <!-- 设置内容 -->
+                <div class="settings-content">
+                    <!-- 基本资料 -->
+                    <div class="settings-tab active" id="profile">
+                        <div class="tab-header">
+                            <h2><i class="fas fa-user"></i> 基本资料</h2>
+                            <p>管理您的个人信息和账户设置</p>
+                        </div>
+
+                        <form id="profileForm" class="settings-form">
+                            <div class="form-group">
+                                <label for="username">用户名</label>
+                                <input type="text" id="username" readonly>
+                                <small>用户名不可修改</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">邮箱地址</label>
+                                <input type="email" id="email" readonly>
+                                <small>邮箱地址不可修改</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="displayName">显示名称</label>
+                                <input type="text" id="displayName" name="displayName" placeholder="输入您希望显示的昵称">
+                                <small>这将是其他用户看到的名称</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="userGroup">用户组</label>
+                                <select id="userGroup" name="userGroup">
+                                    <option value="default">默认组</option>
+                                    <option value="vip">VIP组</option>
+                                    <option value="premium">高级组</option>
+                                    <option value="moderator">版主组</option>
+                                </select>
+                                <small>用户组决定了您的权限和功能</small>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i>
+                                    保存更改
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- 安全设置 -->
+                    <div class="settings-tab" id="security">
+                        <div class="tab-header">
+                            <h2><i class="fas fa-shield-alt"></i> 安全设置</h2>
+                            <p>保护您的账户安全</p>
+                        </div>
+
+                        <form id="passwordForm" class="settings-form">
+                            <div class="form-group">
+                                <label for="currentPassword">当前密码</label>
+                                <div class="password-input">
+                                    <input type="password" id="currentPassword" name="currentPassword" required>
+                                    <button type="button" class="toggle-password" data-target="currentPassword">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <small>请输入您当前的登录密码</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="newPassword">新密码</label>
+                                <div class="password-input">
+                                    <input type="password" id="newPassword" name="newPassword" required>
+                                    <button type="button" class="toggle-password" data-target="newPassword">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <small>密码必须包含大小写字母和数字，至少6位</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirmPassword">确认新密码</label>
+                                <div class="password-input">
+                                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                                    <button type="button" class="toggle-password" data-target="confirmPassword">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <small>请再次输入新密码</small>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-key"></i>
+                                    修改密码
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- 偏好设置 -->
+                    <div class="settings-tab" id="preferences">
+                        <div class="tab-header">
+                            <h2><i class="fas fa-cog"></i> 偏好设置</h2>
+                            <p>自定义您的使用体验</p>
+                        </div>
+
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label for="theme">主题模式</label>
+                                <select id="theme">
+                                    <option value="auto">跟随系统</option>
+                                    <option value="light">浅色主题</option>
+                                    <option value="dark">深色主题</option>
+                                </select>
+                                <small>选择您喜欢的界面主题</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="language">语言设置</label>
+                                <select id="language">
+                                    <option value="zh-CN">简体中文</option>
+                                    <option value="en-US">English</option>
+                                </select>
+                                <small>选择界面显示语言</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="timezone">时区设置</label>
+                                <select id="timezone">
+                                    <option value="Asia/Shanghai">中国标准时间 (UTC+8)</option>
+                                    <option value="UTC">协调世界时 (UTC+0)</option>
+                                    <option value="America/New_York">美国东部时间 (UTC-5)</option>
+                                    <option value="Europe/London">英国时间 (UTC+0)</option>
+                                </select>
+                                <small>设置您所在的时区</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="loginNotifications">
+                                    <span class="checkmark"></span>
+                                    登录通知
+                                </label>
+                                <small>当有新设备登录时发送通知</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="serverNotifications">
+                                    <span class="checkmark"></span>
+                                    服务器通知
+                                </label>
+                                <small>接收服务器状态变化通知</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="eventNotifications">
+                                    <span class="checkmark"></span>
+                                    活动通知
+                                </label>
+                                <small>接收服务器活动和事件通知</small>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-primary" onclick="saveUserPreferences()">
+                                    <i class="fas fa-save"></i>
+                                    保存设置
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 登录记录 -->
+                    <div class="settings-tab" id="history">
+                        <div class="tab-header">
+                            <h2><i class="fas fa-history"></i> 登录记录</h2>
+                            <p>查看您的账户登录历史和活动</p>
+                        </div>
+
+                        <!-- 统计卡片 -->
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-sign-in-alt"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="stat-value" id="totalLogins">--</div>
+                                    <div class="stat-label">总登录次数</div>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="stat-value" id="lastLogin">--</div>
+                                    <div class="stat-label">最后登录</div>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-globe"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="stat-value" id="uniqueIPs">--</div>
+                                    <div class="stat-label">唯一IP数</div>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="stat-value" id="successRate">--</div>
+                                    <div class="stat-label">成功率</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 筛选和搜索 -->
+                        <div class="filter-section">
+                            <div class="filter-row">
+                                <div class="filter-group">
+                                    <label for="dateRange">时间范围</label>
+                                    <select id="dateRange">
+                                        <option value="7">最近7天</option>
+                                        <option value="30" selected>最近30天</option>
+                                        <option value="90">最近90天</option>
+                                        <option value="365">最近一年</option>
+                                    </select>
+                                </div>
+
+                                <div class="filter-group">
+                                    <label for="loginResult">登录结果</label>
+                                    <select id="loginResult">
+                                        <option value="all">全部</option>
+                                        <option value="success">成功</option>
+                                        <option value="failed">失败</option>
+                                    </select>
+                                </div>
+
+                                <div class="filter-group">
+                                    <label for="searchIP">搜索IP</label>
+                                    <input type="text" id="searchIP" placeholder="输入IP地址搜索">
+                                </div>
+
+                                <div class="filter-actions">
+                                    <button id="applyFilters" class="btn btn-secondary">
+                                        <i class="fas fa-filter"></i>
+                                        应用筛选
+                                    </button>
+                                    <button id="resetFilters" class="btn btn-outline">
+                                        <i class="fas fa-undo"></i>
+                                        重置
+                                    </button>
+                                    <button id="exportData" class="btn btn-outline">
+                                        <i class="fas fa-download"></i>
+                                        导出数据
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 登录记录表格 -->
+                        <div class="table-container">
+                            <div class="table-header">
+                                <h3>登录记录</h3>
+                                <span class="record-count">共 <span id="recordCount">0</span> 条记录</span>
+                            </div>
+
+                            <table class="history-table">
+                                <thead>
+                                    <tr>
+                                        <th>时间</th>
+                                        <th>IP地址</th>
+                                        <th>设备信息</th>
+                                        <th>登录方式</th>
+                                        <th>结果</th>
+                                        <th>失败原因</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="historyTableBody">
+                                    <tr>
+                                        <td colspan="7" class="loading">
+                                            <i class="fas fa-spinner fa-spin"></i>
+                                            加载中...
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <!-- 分页控件 -->
+                            <div id="pagination" class="pagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 通知组件 -->
+    <div id="notification" class="notification">
+        <div class="notification-content">
+            <i class="notification-icon fas fa-info-circle"></i>
+            <span class="notification-message">通知消息</span>
+        </div>
+    </div>
+
+    <!-- JavaScript文件 -->
+    <script src="../../shared/utils/user-permissions.js"></script>
+    <script src="profile-settings.js"></script>
+</body>
+
+</html>

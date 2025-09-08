@@ -1,0 +1,519 @@
+/**
+ * 服务器状态显示样式
+ */
+
+.server-status-display {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 16px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.server-status-display:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid #f1f5f9;
+    transition: all 0.2s ease;
+}
+
+.status-item:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+.status-item:hover {
+    background-color: rgba(59, 130, 246, 0.05);
+    border-radius: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.status-item i {
+    width: 20px;
+    margin-right: 12px;
+    font-size: 16px;
+    color: #64748b;
+    transition: color 0.2s ease;
+}
+
+.status-item:hover i {
+    color: #3b82f6;
+}
+
+.status-text {
+    flex: 1;
+    font-size: 14px;
+    color: #475569;
+    font-weight: 500;
+}
+
+.status-value {
+    font-weight: 600;
+    margin-left: 8px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s ease;
+}
+
+/* 状态样式 */
+.server-status-display.status-online {
+    border-color: #10b981;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+}
+
+.server-status-display.status-online .status-item i {
+    color: #10b981;
+}
+
+.server-status-display.status-online .status-value {
+    background-color: #ecfdf5;
+    border-color: #10b981;
+    color: #10b981;
+}
+
+.server-status-display.status-offline {
+    border-color: #ef4444;
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+}
+
+.server-status-display.status-offline .status-item i {
+    color: #ef4444;
+}
+
+.server-status-display.status-offline .status-value {
+    background-color: #fef2f2;
+    border-color: #ef4444;
+    color: #ef4444;
+}
+
+.server-status-display.status-warning {
+    border-color: #f59e0b;
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+}
+
+.server-status-display.status-warning .status-item i {
+    color: #f59e0b;
+}
+
+.server-status-display.status-warning .status-value {
+    background-color: #fffbeb;
+    border-color: #f59e0b;
+    color: #f59e0b;
+}
+
+/* 加载状态 */
+.server-status-display.loading .status-value {
+    background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .server-status-display {
+        padding: 12px;
+        margin: 12px 0;
+    }
+
+    .status-item {
+        margin-bottom: 10px;
+        padding: 6px 0;
+    }
+
+    .status-item i {
+        width: 18px;
+        margin-right: 10px;
+        font-size: 14px;
+    }
+
+    .status-text {
+        font-size: 13px;
+    }
+
+    .status-value {
+        font-size: 12px;
+        padding: 3px 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .server-status-display {
+        padding: 10px;
+        margin: 10px 0;
+    }
+
+    .status-item {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 8px;
+    }
+
+    .status-item i {
+        margin-bottom: 4px;
+        margin-right: 0;
+    }
+
+    .status-value {
+        margin-left: 0;
+        margin-top: 4px;
+        align-self: flex-start;
+    }
+}
+
+/* 动画效果 */
+.server-status-display {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 状态变化动画 */
+.status-value {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.status-value.updated {
+    animation: pulse 0.6s ease-in-out;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* 错误状态 */
+.server-status-display.error {
+    border-color: #ef4444;
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+}
+
+.server-status-display.error .status-item i {
+    color: #ef4444;
+}
+
+.server-status-display.error .status-value {
+    background-color: #fef2f2;
+    border-color: #ef4444;
+    color: #ef4444;
+}
+
+/* 成功状态 */
+.server-status-display.success {
+    border-color: #10b981;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+}
+
+.server-status-display.success .status-item i {
+    color: #10b981;
+}
+
+.server-status-display.success .status-value {
+    background-color: #ecfdf5;
+    border-color: #10b981;
+    color: #10b981;
+}
+
+/* 实时状态卡片样式 */
+.server-status-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px;
+    margin: 24px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.server-status-card:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
+}
+
+.server-status-card h3 {
+    display: flex;
+    align-items: center;
+    margin: 0 0 20px 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1e293b;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 12px;
+}
+
+.server-status-card h3 i {
+    margin-right: 10px;
+    color: #3b82f6;
+    font-size: 18px;
+}
+
+/* 服务器信息网格 */
+.server-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.server-info-item {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.server-info-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.server-info-item:hover::before {
+    transform: scaleX(1);
+}
+
+.server-info-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: #3b82f6;
+}
+
+.server-info-icon {
+    margin-bottom: 8px;
+}
+
+.server-info-icon i {
+    font-size: 24px;
+    color: #3b82f6;
+    transition: all 0.3s ease;
+}
+
+.server-info-item:hover .server-info-icon i {
+    color: #1d4ed8;
+    transform: scale(1.1);
+}
+
+.server-info-label {
+    font-size: 14px;
+    color: #64748b;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.server-info-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1e293b;
+    transition: color 0.3s ease;
+}
+
+.server-info-item:hover .server-info-value {
+    color: #3b82f6;
+}
+
+/* 最后更新时间 */
+.last-update-time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 20px;
+    padding: 12px;
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+}
+
+.last-update-time i {
+    margin-right: 8px;
+    color: #3b82f6;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* 在线玩家部分 */
+.online-players-section {
+    border-top: 1px solid #e2e8f0;
+    padding-top: 20px;
+}
+
+.online-players-section h4 {
+    display: flex;
+    align-items: center;
+    margin: 0 0 16px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.online-players-section h4 i {
+    margin-right: 8px;
+    color: #10b981;
+}
+
+.online-players-list {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: #ffffff;
+}
+
+.online-players-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.online-players-list::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 3px;
+}
+
+.online-players-list::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+.online-players-list::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+.player-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid #f1f5f9;
+    transition: all 0.2s ease;
+}
+
+.player-item:last-child {
+    border-bottom: none;
+}
+
+.player-item:hover {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.player-name {
+    font-weight: 500;
+    color: #1e293b;
+}
+
+.player-ping {
+    font-size: 12px;
+    color: #64748b;
+    background: #f1f5f9;
+    padding: 2px 8px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+}
+
+.no-players {
+    text-align: center;
+    padding: 20px;
+    color: #64748b;
+    font-style: italic;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .server-status-card {
+        padding: 20px;
+        margin: 20px 0;
+    }
+    
+    .server-info-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 12px;
+    }
+    
+    .server-info-item {
+        padding: 12px;
+    }
+    
+    .server-info-icon i {
+        font-size: 20px;
+    }
+    
+    .server-info-value {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .server-status-card {
+        padding: 16px;
+        margin: 16px 0;
+    }
+    
+    .server-info-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .server-info-item {
+        padding: 10px;
+    }
+    
+    .server-info-icon i {
+        font-size: 18px;
+    }
+    
+    .server-info-value {
+        font-size: 14px;
+    }
+}

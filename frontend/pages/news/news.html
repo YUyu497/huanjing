@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新闻资讯 - 幻境FiveM服务器</title>
+
+    <!-- 样式文件 -->
+    <link rel="stylesheet" href="../../shared/ui/shared.css">
+    <link rel="stylesheet" href="../../shared/ui/animations.css">
+    <link rel="stylesheet" href="../../shared/ui/responsive.css">
+    <link rel="stylesheet" href="../../components/navigation/navigation.css">
+    <link rel="stylesheet" href="news.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1><a href="../../index.html">幻境</a></h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../../index.html">首页</a></li>
+                <li><a href="../../index.html#features">服务器特色</a></li>
+                <li><a href="news.html" class="active">新闻资讯</a></li>
+                <li><a href="../../index.html#connect">连接服务器</a></li>
+                <li><a href="../../index.html#about">关于我们</a></li>
+                <li><a href="../download/download.html">下载中心</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <!-- 移动端菜单 -->
+        <div class="mobile-menu">
+            <ul>
+                <li><a href="../../index.html">首页</a></li>
+                <li><a href="../../index.html#features">服务器特色</a></li>
+                <li><a href="news.html" class="active">新闻资讯</a></li>
+                <li><a href="../../index.html#connect">连接服务器</a></li>
+                <li><a href="../../index.html#about">关于我们</a></li>
+                <li><a href="../download/download.html">下载中心</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="main-content">
+        <div class="container">
+            <!-- 页面标题 -->
+            <div class="page-header">
+                <h1><i class="fas fa-newspaper"></i> 新闻资讯</h1>
+                <p>了解服务器最新动态、活动资讯和游戏攻略</p>
+            </div>
+
+            <!-- 新闻统计卡片 -->
+            <div class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="totalArticles">--</div>
+                            <div class="stat-label">总文章数</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="totalViews">--</div>
+                            <div class="stat-label">总浏览量</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="todayArticles">--</div>
+                            <div class="stat-label">今日新增</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="totalCategories">--</div>
+                            <div class="stat-label">分类数量</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="latestPublish">--</div>
+                            <div class="stat-label">最新发布</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 置顶文章 -->
+            <section class="featured-section" id="featuredSection" style="display: none;">
+                <h2 class="section-title">
+                    <i class="fas fa-star"></i>
+                    置顶文章
+                </h2>
+                <div class="featured-grid" id="featuredGrid"></div>
+            </section>
+
+            <!-- 筛选和搜索 -->
+            <section class="filter-section">
+                <div class="filter-container">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="搜索新闻文章...">
+                        <button id="searchBtn" class="search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+
+                    <div class="filter-options">
+                        <div class="filter-group">
+                            <label for="categoryFilter">分类</label>
+                            <select id="categoryFilter">
+                                <option value="">全部分类</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="sortFilter">排序</label>
+                            <select id="sortFilter">
+                                <option value="latest">最新发布</option>
+                                <option value="popular">最受欢迎</option>
+                                <option value="featured">置顶优先</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="tagFilter">标签</label>
+                            <select id="tagFilter">
+                                <option value="">全部标签</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 新闻文章列表 -->
+            <section class="news-section">
+                <div class="news-container">
+                    <div class="news-grid" id="newsGrid">
+                        <!-- 加载状态 -->
+                        <div class="loading-state">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>正在加载新闻...</p>
+                        </div>
+                    </div>
+
+                    <!-- 分页控件 -->
+                    <div class="pagination" id="pagination"></div>
+                </div>
+            </section>
+
+            <!-- 热门文章侧边栏 -->
+            <aside class="sidebar" id="sidebar">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">
+                        <i class="fas fa-fire"></i>
+                        热门文章
+                    </h3>
+                    <div class="hot-articles" id="hotArticles">
+                        <div class="loading-state">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>加载中...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">
+                        <i class="fas fa-tags"></i>
+                        热门标签
+                    </h3>
+                    <div class="popular-tags" id="popularTags">
+                        <div class="loading-state">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>加载中...</p>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- 文章详情模态框 -->
+    <div id="articleModal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle"></h2>
+                <button class="close-modal" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="article-meta">
+                    <span class="article-category" id="modalCategory"></span>
+                    <span class="article-date" id="modalDate"></span>
+                    <span class="article-views" id="modalViews"></span>
+                </div>
+                <div class="article-tags" id="modalTags"></div>
+                <div class="article-content" id="modalContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 登录提示模态框 -->
+    <div id="loginRequiredModal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-lock"></i> 需要登录</h2>
+                <button class="close-modal" id="closeLoginModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="login-required-content">
+                    <i class="fas fa-user-shield login-icon"></i>
+                    <h3>请先登录</h3>
+                    <p>新闻资讯页面需要登录后才能访问，请先登录您的账户。</p>
+                    <div class="login-actions">
+                        <a href="../auth/auth.html" class="btn btn-primary">
+                            <i class="fas fa-sign-in-alt"></i>
+                            立即登录
+                        </a>
+                        <a href="../../index.html" class="btn btn-secondary">
+                            <i class="fas fa-home"></i>
+                            返回首页
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- API配置文件 -->
+    <script src="../../shared/core/api-config.js"></script>
+
+    <!-- 认证管理器 -->
+    <script src="../../shared/auth/auth-manager.js"></script>
+
+    <!-- 认证验证器 -->
+    <script src="../../shared/auth/auth-validator.js"></script>
+
+    <!-- 导航栏JavaScript -->
+    <script src="../../components/navigation/navigation.js"></script>
+
+    <!-- JavaScript文件 -->
+    <script src="news.js"></script>
+</body>
+
+</html>

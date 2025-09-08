@@ -1,0 +1,36 @@
+# 服务器配置
+PORT=3000
+NODE_ENV=production
+
+# 跨域配置
+CORS_ORIGIN=https://dingyu.site
+
+# 日志配置
+LOG_LEVEL=info
+LOG_FILE=/www/wwwroot/dingyu.site/logs/app.log
+
+# 安全配置
+RATE_LIMIT_WINDOW=15
+RATE_LIMIT_MAX=100
+
+# 分析配置
+ANALYTICS_ENABLED=true
+
+# 数据库配置
+DB_TYPE=mysql
+DB_HOST=localhost
+DB_PORT=3306
+DB_NAME=huanjing_fivem
+DB_USER=huanjing_fivem
+DB_PASSWORD=huanjing_fivem
+
+# JWT配置
+JWT_SECRET=your_jwt_secret_key_here
+JWT_EXPIRES_IN=7d
+
+# txAdmin 集成配置
+TXADMIN_URL=http://111.170.145.231:40120/
+
+# 邮件配置
+QQ_EMAIL_USER=1162250363@qq.com
+QQ_EMAIL_PASS=adrgvlhzmsiojcgc

@@ -1,0 +1,664 @@
+/* 登录注册页面专用样式 */
+
+/* 页面基础样式 */
+body.auth-page {
+    background: linear-gradient(135deg, #0A0F1F 0%, #141A30 50%, #1A1F35 100%);
+    min-height: 100vh;
+    padding-top: 80px;
+    color: #ffffff;
+}
+
+/* 主要内容区域 */
+.auth-main {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+/* 认证容器 */
+.auth-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+    min-height: 600px;
+}
+
+/* 左侧信息区域 */
+.auth-info {
+    padding: 2rem;
+}
+
+.auth-info-content {
+    max-width: 500px;
+}
+
+.brand-section {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.brand-logo {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #165DFF, #64B5F6);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2rem;
+    font-weight: 800;
+    color: white;
+    box-shadow: 0 10px 30px rgba(22, 93, 255, 0.3);
+}
+
+.brand-section h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #165DFF, #64B5F6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.brand-section p {
+    color: #9CA3AF;
+    font-size: 1.1rem;
+}
+
+.features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+}
+
+.feature-item i {
+    font-size: 1.5rem;
+    color: #64B5F6;
+    margin-top: 0.25rem;
+}
+
+.feature-item h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+}
+
+.feature-item p {
+    color: #9CA3AF;
+    line-height: 1.5;
+    font-size: 0.9rem;
+}
+
+/* 右侧表单区域 */
+.auth-form-container {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* 标签页 */
+.auth-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.5rem;
+    border-radius: 12px;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    color: #9CA3AF;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+    background: #165DFF;
+    color: white;
+    box-shadow: 0 4px 12px rgba(22, 93, 255, 0.3);
+}
+
+.tab-btn:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+/* 表单样式 */
+.auth-form {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+/* 登录方式选择器 */
+.login-method-selector {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 5px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.method-btn {
+    flex: 1;
+    padding: 12px 16px;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.method-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.method-btn.active {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 15px rgba(22, 93, 255, 0.3);
+}
+
+.method-btn i {
+    font-size: 16px;
+}
+
+/* 登录方式切换 */
+.login-method {
+    display: none;
+    animation: slideIn 0.3s ease-in-out;
+}
+
+.login-method.active {
+    display: block;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-header h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.form-header p {
+    color: #9CA3AF;
+    font-size: 0.95rem;
+}
+
+/* 表单组 */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #E5E7EB;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+/* 输入框组 */
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-group i {
+    position: absolute;
+    left: 1rem;
+    color: #9CA3AF;
+    z-index: 2;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.875rem 1rem 0.875rem 2.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: white;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.input-group input::placeholder {
+    color: #6B7280;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #165DFF;
+    box-shadow: 0 0 0 3px rgba(22, 93, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* 验证码输入组 */
+.verification-group {
+    position: relative;
+}
+
+.verification-group i {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9CA3AF;
+    z-index: 2;
+}
+
+.verification-group input {
+    width: 100%;
+    padding: 0.875rem 1rem 0.875rem 2.5rem;
+    padding-right: 120px;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 8px;
+    color: white !important;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.verification-group input::placeholder {
+    color: #6B7280;
+}
+
+.verification-group input:focus {
+    outline: none !important;
+    border-color: #165DFF !important;
+    box-shadow: 0 0 0 3px rgba(22, 93, 255, 0.1) !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+}
+
+.send-code-btn {
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #165DFF;
+    border: none;
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 3;
+}
+
+.send-code-btn:hover {
+    background: #1348CC;
+}
+
+.send-code-btn.loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.send-code-btn.disabled {
+    background: #6B7280;
+    cursor: not-allowed;
+}
+
+/* 密码显示切换 */
+.toggle-password {
+    position: absolute;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: #9CA3AF;
+    cursor: pointer;
+    padding: 0;
+    z-index: 2;
+    transition: color 0.3s ease;
+}
+
+.toggle-password:hover {
+    color: #64B5F6;
+}
+
+/* 复选框样式 */
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #D1D5DB;
+    position: relative;
+    min-height: 18px;
+}
+
+.checkbox-label input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    flex-shrink: 0;
+    margin-top: 0;
+    vertical-align: top;
+}
+
+.checkbox-label input[type="checkbox"]:checked~.checkmark {
+    background: #165DFF;
+    border-color: #165DFF;
+}
+
+.checkbox-label input[type="checkbox"]:checked~.checkmark::after {
+    content: '✓';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.checkbox-label a {
+    color: #64B5F6;
+    text-decoration: none;
+}
+
+.checkbox-label a:hover {
+    text-decoration: underline;
+}
+
+/* 提交按钮 */
+.auth-submit-btn {
+    width: 100%;
+    padding: 0.875rem;
+    background: linear-gradient(135deg, #165DFF, #64B5F6);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(22, 93, 255, 0.4);
+}
+
+.auth-submit-btn.loading {
+    pointer-events: none;
+}
+
+.auth-submit-btn.loading::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.auth-submit-btn.loading span {
+    opacity: 0;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* 表单底部 */
+.form-footer {
+    text-align: center;
+    color: #9CA3AF;
+    font-size: 0.9rem;
+}
+
+.form-footer a,
+.switch-tab {
+    color: #64B5F6;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.form-footer a:hover,
+.switch-tab:hover {
+    text-decoration: underline;
+}
+
+/* 错误信息 */
+.form-error {
+    color: #EF4444;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    min-height: 1.2rem;
+}
+
+/* 通知组件 */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease;
+    z-index: 9999;
+    max-width: 350px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* 确保通知完全独立，不受任何模糊效果影响 */
+    isolation: isolate;
+    /* 强制在最上层显示 */
+    position: fixed !important;
+    z-index: 9999 !important;
+    /* 确保背景完全不透明 */
+    background: #ffffff !important;
+    /* 默认隐藏 */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    /* 初始位置在屏幕右侧外 */
+    transform: translateX(400px);
+}
+
+.notification.show {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.notification.success {
+    border-left: 4px solid #10B981;
+}
+
+.notification.error {
+    border-left: 4px solid #EF4444;
+}
+
+.notification.warning {
+    border-left: 4px solid #F59E0B;
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-height: 24px;
+}
+
+.notification-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.notification.success .notification-icon {
+    color: #10B981;
+}
+
+.notification.error .notification-icon {
+    color: #EF4444;
+}
+
+.notification.warning .notification-icon {
+    color: #F59E0B;
+}
+
+.notification-message {
+    color: #000000;
+    font-weight: 700;
+    line-height: 1.4;
+    font-size: 0.95rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .auth-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        max-width: 500px;
+    }
+
+    .auth-info {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .auth-main {
+        padding: 1rem 0;
+    }
+
+    .auth-form-container {
+        padding: 1.5rem;
+        margin: 0 1rem;
+    }
+
+    .brand-section h1 {
+        font-size: 2rem;
+    }
+
+    .form-header h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-form-container {
+        padding: 1rem;
+        border-radius: 16px;
+    }
+
+    .verification-group input {
+        padding-right: 110px;
+    }
+
+    .send-code-btn {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.75rem;
+    }
+
+    .notification {
+        left: 20px;
+        right: 20px;
+        max-width: none;
+        transform: translateX(400px);
+    }
+
+    .notification.show {
+        transform: translateX(0);
+    }
+}

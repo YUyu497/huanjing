@@ -1,0 +1,1139 @@
+/* 下载页面专用样式 */
+
+/* 修复导航栏遮挡问题 */
+body.download-page {
+    padding-top: 80px !important;
+    /* 为固定导航栏留出空间 */
+}
+
+/* 加载动画样式 */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200px 0;
+    }
+
+    100% {
+        background-position: calc(200px + 100%) 0;
+    }
+}
+
+/* 下载按钮加载状态 */
+.download-btn.loading {
+    position: relative;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.download-btn.loading::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.download-btn.loading span {
+    opacity: 0;
+}
+
+/* 微交互效果 */
+.download-card,
+.requirement-card,
+.stat-card,
+.faq-item {
+    position: relative;
+    overflow: hidden;
+}
+
+/* 光晕效果 */
+.download-card::after,
+.requirement-card::after,
+.stat-card::after,
+.faq-item::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(155, 89, 182, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.6s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.download-card:hover::after,
+.requirement-card:hover::after,
+.stat-card:hover::after,
+.faq-item:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* 粒子效果 */
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(155, 89, 182, 0.6);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: particle-float 3s ease-in-out infinite;
+}
+
+@keyframes particle-float {
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+    }
+
+    50% {
+        transform: translateY(-20px) scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* 按钮悬停效果增强 */
+.download-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.download-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.download-btn:hover::before {
+    left: 100%;
+}
+
+.download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(155, 89, 182, 0.3);
+}
+
+/* 数字计数动画 */
+.stat-number {
+    transition: all 0.3s ease;
+}
+
+.stat-number.animate {
+    animation: number-count 1s ease-out;
+}
+
+@keyframes number-count {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* 强制应用统一的玻璃态白紫渐变主题 */
+body.download-page {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 20%, #e8ebff 40%, #d4d9ff 60%, #b8c0ff 80%, #9b59b6 100%) !important;
+    color: #2c3e50 !important;
+    min-height: 100vh !important;
+}
+
+/* 所有区域使用相同的玻璃态背景 */
+.download-page .page-header,
+.download-page .download-section,
+.download-page .requirements-section,
+.download-page .stats-section,
+.download-page .faq-section,
+.download-page .trends-section {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    padding: 5rem 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* 为每个区域添加微妙的渐变覆盖 */
+.download-page .page-header::before,
+.download-page .download-section::before,
+.download-page .requirements-section::before,
+.download-page .stats-section::before,
+.download-page .faq-section::before,
+.download-page .trends-section::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: linear-gradient(135deg, rgba(155, 89, 182, 0.05) 0%, rgba(142, 68, 173, 0.05) 100%) !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+}
+
+/* 确保内容在玻璃层之上 */
+.download-page .page-header>*,
+.download-page .download-section>*,
+.download-page .requirements-section>*,
+.download-page .stats-section>*,
+.download-page .faq-section>*,
+.download-page .trends-section>* {
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+/* 页面头部 - 移除冲突的背景色 */
+.page-header {
+    padding: 4rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+}
+
+.header-content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.page-header h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    text-shadow: 0 0 30px rgba(100, 181, 246, 0.5);
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.breadcrumb a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb a:hover {
+    color: var(--neon-color);
+}
+
+.breadcrumb i {
+    font-size: 0.8rem;
+    opacity: 0.6;
+}
+
+/* 下载选项区域 */
+.download-section {
+    padding: 5rem 0;
+    position: relative;
+}
+
+/* 移除过渡渐变，避免分隔 */
+
+.download-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.download-card {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(15px);
+}
+
+.download-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-color), var(--neon-color));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.download-card:hover::before {
+    transform: scaleX(1);
+}
+
+.download-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-heavy);
+    border-color: var(--accent-color);
+}
+
+.download-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--accent-color), var(--neon-color));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2rem;
+    color: white;
+    box-shadow: var(--shadow-primary);
+}
+
+.download-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.download-card p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.download-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.download-info span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.download-info i {
+    color: var(--accent-color);
+    width: 16px;
+}
+
+/* Kook下载卡片特殊样式 */
+.kook-description {
+    background: rgba(100, 181, 246, 0.1);
+    border: 1px solid rgba(100, 181, 246, 0.2);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.kook-description p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.kook-description i {
+    color: var(--accent-color);
+    margin-top: 0.1rem;
+    flex-shrink: 0;
+}
+
+/* 下载网格调整为两列 */
+.download-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+/* 系统要求区域 */
+.requirements-section {
+    padding: 5rem 0;
+    position: relative;
+}
+
+/* 移除过渡渐变，避免分隔 */
+
+.requirements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+/* 系统要求卡片样式 - 玻璃态效果 */
+.download-page .requirements-section .requirement-card,
+.download-page .requirement-card {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 16px !important;
+    padding: 2rem !important;
+    text-align: center !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+    margin-bottom: 2rem !important;
+    box-shadow: 0 8px 32px rgba(155, 89, 182, 0.1) !important;
+    display: block !important;
+    backdrop-filter: blur(15px) !important;
+}
+
+.download-page .requirements-section .requirement-card::before,
+.download-page .requirement-card::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 4px !important;
+    background: linear-gradient(90deg, rgba(155, 89, 182, 0.6), rgba(142, 68, 173, 0.6)) !important;
+    transform: scaleX(0) !important;
+    transition: transform 0.3s ease !important;
+}
+
+.download-page .requirements-section .requirement-card:hover::before,
+.download-page .requirement-card:hover::before {
+    transform: scaleX(1) !important;
+}
+
+.download-page .requirements-section .requirement-card:hover,
+.download-page .requirement-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5) !important;
+    border-color: #165DFF !important;
+}
+
+.requirement-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-color), var(--neon-color));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.requirement-card:hover::before {
+    transform: scaleX(1);
+}
+
+.requirement-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-heavy);
+    border-color: var(--accent-color);
+}
+
+.requirement-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.requirement-card h3 i {
+    color: var(--accent-color);
+    font-size: 1.8rem;
+}
+
+.requirement-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: left;
+}
+
+.requirement-item {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    position: relative;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    background: rgba(100, 181, 246, 0.05);
+    border-radius: var(--border-radius);
+    border-left: 3px solid var(--accent-color);
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.requirement-item:hover {
+    background: rgba(100, 181, 246, 0.1);
+    transform: translateX(5px);
+}
+
+.requirement-item::before {
+    content: '✓';
+    position: absolute;
+    left: 0.75rem;
+    color: var(--accent-color);
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.requirement-item strong {
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+/* 统计概览区域 */
+.stats-section {
+    padding: 5rem 0;
+    position: relative;
+}
+
+/* 移除过渡渐变，避免分隔 */
+
+.stats-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+/* 统计卡片样式 - 玻璃态效果 */
+.download-page .stats-section .stat-card,
+.download-page .stat-card {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 16px !important;
+    padding: 2rem !important;
+    text-align: center !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+    margin-bottom: 2rem !important;
+    box-shadow: 0 8px 32px rgba(155, 89, 182, 0.1) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    backdrop-filter: blur(15px) !important;
+}
+
+.download-page .stats-section .stat-card::before,
+.download-page .stat-card::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 4px !important;
+    background: linear-gradient(90deg, rgba(155, 89, 182, 0.6), rgba(142, 68, 173, 0.6)) !important;
+    transform: scaleX(0) !important;
+    transition: transform 0.3s ease !important;
+}
+
+.download-page .stats-section .stat-card:hover::before,
+.download-page .stat-card:hover::before {
+    transform: scaleX(1) !important;
+}
+
+.download-page .stats-section .stat-card:hover,
+.download-page .stat-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5) !important;
+    border-color: #165DFF !important;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-color), var(--neon-color));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover::before {
+    transform: scaleX(1);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-heavy);
+    border-color: var(--accent-color);
+}
+
+.stat-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--accent-color), var(--neon-color));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2rem;
+    color: white;
+    box-shadow: var(--shadow-primary);
+}
+
+.stat-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 20px rgba(100, 181, 246, 0.5);
+}
+
+.stat-label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* 趋势图表区域 */
+.trends-section {
+    padding: 5rem 0;
+}
+
+.chart-wrapper {
+    margin-top: 3rem;
+}
+
+.chart-container {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    height: 400px;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(155, 89, 182, 0.1);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(15px);
+}
+
+.chart-container:hover {
+    border-color: var(--accent-color);
+    box-shadow: var(--shadow-medium);
+}
+
+.chart-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.chart-btn {
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--border-radius);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+    backdrop-filter: blur(15px);
+}
+
+.chart-btn:hover {
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+.chart-btn.active {
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+    box-shadow: var(--shadow-primary);
+}
+
+/* FAQ区域 */
+.faq-section {
+    padding: 5rem 0;
+}
+
+.faq-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* FAQ样式 - 玻璃态效果 */
+.download-page .faq-section .faq-item,
+.download-page .faq-item {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 8px 32px rgba(155, 89, 182, 0.1) !important;
+    margin-bottom: 1rem !important;
+    padding: 0 !important;
+    display: block !important;
+    backdrop-filter: blur(15px) !important;
+}
+
+.download-page .faq-section .faq-item:hover,
+.download-page .faq-item:hover {
+    border-color: #165DFF !important;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4) !important;
+    transform: translateY(-2px) !important;
+}
+
+.download-page .faq-section .faq-item.active,
+.download-page .faq-item.active {
+    border-color: #165DFF !important;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4) !important;
+    background: rgba(100, 181, 246, 0.02) !important;
+}
+
+.faq-item:hover {
+    border-color: var(--accent-color);
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-2px);
+}
+
+.faq-item.active {
+    border-color: var(--accent-color);
+    box-shadow: var(--shadow-medium);
+    background: rgba(100, 181, 246, 0.02);
+}
+
+.faq-question {
+    padding: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color 0.3s ease;
+}
+
+.faq-question:hover {
+    background: rgba(100, 181, 246, 0.1);
+}
+
+.faq-question h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.faq-question i {
+    color: var(--accent-color);
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    padding: 0 1.5rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+    padding: 0 1.5rem 1.5rem;
+    max-height: 200px;
+}
+
+.faq-answer p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* 页脚 */
+footer {
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: 3rem;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="footer-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(100,181,246,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23footer-grid)"/></svg>');
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.footer-content {
+    text-align: center;
+    padding: 4rem 0;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-content p {
+    color: var(--text-secondary);
+    margin-bottom: 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.footer-content:hover p {
+    opacity: 1;
+    color: var(--text-primary);
+}
+
+.footer-links {
+    display: flex;
+    gap: 2.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.footer-links a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    border: 2px solid transparent;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    background: rgba(100, 181, 246, 0.05);
+}
+
+.footer-links a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(100, 181, 246, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.footer-links a:hover::before {
+    left: 100%;
+}
+
+.footer-links a:hover {
+    color: var(--neon-color);
+    background: rgba(100, 181, 246, 0.15);
+    border-color: var(--accent-color);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(100, 181, 246, 0.3);
+    text-shadow: 0 0 10px rgba(100, 181, 246, 0.5);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .page-header h1 {
+        font-size: 2.5rem;
+    }
+
+    .download-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .requirements-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-overview {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .chart-container {
+        height: 300px;
+    }
+
+    .chart-controls {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-header {
+        padding: 3rem 0;
+    }
+
+    .page-header h1 {
+        font-size: 2rem;
+    }
+
+    .stats-overview {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+/* 登录验证相关样式 */
+.login-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    backdrop-filter: blur(10px);
+}
+
+.modal-content {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #165DFF, #64B5F6);
+    color: white;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modal-body {
+    padding: 24px;
+}
+
+.modal-body p {
+    margin: 0 0 20px 0;
+    color: #333;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.modal-actions .btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #1348CC;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: #6B7280;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #4B5563;
+    transform: translateY(-1px);
+}
+
+/* Toast提示样式 */
+.toast {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transform: translateX(400px);
+    transition: all 0.4s ease;
+    z-index: 10001;
+    max-width: 350px;
+}
+
+.toast.show {
+    transform: translateX(0);
+}
+
+.toast-warning {
+    border-left: 4px solid #F59E0B;
+}
+
+.toast-warning .toast-content i {
+    color: #F59E0B;
+}
+
+.toast-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.toast-content i {
+    font-size: 1.2rem;
+    color: #F59E0B;
+}
+
+.toast-content span {
+    color: #374151;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .modal-actions {
+        flex-direction: column;
+    }
+
+    .modal-actions .btn {
+        justify-content: center;
+    }
+
+    .toast {
+        left: 20px;
+        right: 20px;
+        max-width: none;
+        transform: translateY(-100px);
+    }
+
+    .toast.show {
+        transform: translateY(0);
+    }
+}
